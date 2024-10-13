@@ -1,0 +1,48 @@
+#featured-arrangements {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.arrangement {
+    background-color: #f7f4ed;
+    border: 2px solid #3a5a40;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+}
+
+.arrangement h3 {
+    font-size: 1.5rem;
+    color: #3a5a40;
+}
+
+.arrangement p {
+    font-size: 1.2rem;
+    color: #f28c38;
+    margin-bottom: 15px;
+}
+
+#cart {
+    margin-top: 50px;
+    background-color: #fff3e0;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#cart-items {
+    list-style-type: none;
+}
+
+#cart-items li {
+    padding: 5px 0;
+    font-size: 1.2rem;
+}
+
+#cart-total {
+    font-size: 1.5rem;
+    color: #3a5a40;
+    font-weight: bold;
+}
