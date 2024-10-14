@@ -1,3 +1,13 @@
+:root {
+    --primary-color: #3a5a40;
+    --secondary-color: #f28c38;
+    --background-color: #f7f4ed;
+    --text-color: #333;
+    --header-color: #3a5a40;
+    --footer-color: #fff;
+}
+
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -7,22 +17,22 @@
 /* Body Styling */
 body {
     font-family: 'Cormorant Garamond', serif;
-    background-color: #f7f4ed;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
     line-height: 1.6;
 }
 
 /* Header Styling */
 header {
-    background-color: #f7f4ed;
-    color: #3a5a40;
+    background-color: var(--background-color);
+    color: var(--header-color);
     text-align: center;
-    border-bottom: 2px solid #f28c38;
+    border-bottom: 2px solid var(--secondary-color);
 }
 
 /* Nav Bar Styling */
 nav {
-    background-color: #3a5a40;
+    background-color: var(--primary-color);
     padding: 10px 0;
     text-align: center;
 }
@@ -40,13 +50,13 @@ nav li {
 }
 
 nav a {
-    color: #f7f4ed;
+    color: var(--background-color);
     font-size: 1.2rem;
     text-decoration: none;
 }
 
 nav a:hover {
-    color: #f28c38;
+    color: var(--secondary-color);
 }
 
 /* Main Section Styling */
@@ -59,21 +69,21 @@ main {
 /* Section Titles */
 h2 {
     font-size: 2.5rem;
-    color: #3a5a40;
+    color: var(--primary-color);
     margin-bottom: 10px;
     text-transform: uppercase;
-    border-bottom: 2px solid #f28c38;
+    border-bottom: 2px solid var(--secondary-color);
     padding-bottom: 10px;
 }
 
 /* Footer Styling */
 footer {
-    background-color: #3a5a40;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--footer-color);
     text-align: center;
     padding: 10px;
     margin-top: 20px;
-    border-top: 2px solid #f28c38;
+    border-top: 2px solid var(--secondary-color);
 }
 
 footer p {
@@ -82,8 +92,8 @@ footer p {
 
 /* Button Styling */
 button {
-    background-color: #3a5a40;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--footer-color);
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -92,7 +102,7 @@ button {
 }
 
 button:hover {
-    background-color: #f28c38;
+    background-color: var(--secondary-color);
 }
 
 /* List Styling */
@@ -103,7 +113,7 @@ ol {
 
 li {
     margin-bottom: 10px;
-    color: #333;
+    color: var(--text-color);
 }
 
 /* Responsive Design */
