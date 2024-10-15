@@ -1,0 +1,33 @@
+#locations {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.location {
+    background-color: var(--background-color);
+    border: 2px solid var(--primary-color);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+}
+
+.location h3 {
+    font-size: 1.5rem;
+    color: var(--header-color);
+}
+
+.location p {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.location img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
