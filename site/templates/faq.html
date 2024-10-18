@@ -1,638 +1,802 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
-
-  <meta charset="utf-8" />
-  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-    crossorigin="anonymous"></script>
-  <style type="text/css">
-    body,
-    html {
-      margin: 0px;
-      padding: 0px;
-      width: 100%;
-      height: 100%;
-      background-color: #f7f4ed;
-    }
-
-    .banner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: "Montserrat", sans-serif;
-      background-color: #f7f4ed;
-      width: 100%;
-      height: 70px;
-      padding: 0;
-      margin-bottom: 0px;
-    }
-
-    .banner-title {
-      color: rgb(113, 120, 103);
-      position: relative;
-      text-decoration: none;
-    }
-
-    .banner-title img {
-      width: 150px;
-      height: auto;
-    }
-
-    .banner-links {
-      display: flex;
-      gap: 60px;
-    }
-
-    .banner-links a {
-      font-size: 1em;
-      color: #3a5a40;
-      font-weight: 500;
-      text-decoration: none;
-    }
-
-    .banner-links a:hover {
-      color: orange;
-    }
-
-    .right {
-      margin-right: 200px;
-    }
-
-    .left {
-      margin-left: 200px;
-    }
-
-    .intro {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: rgb(242, 220, 180);
-      width: 100%;
-      height: auto;
-      flex-wrap: wrap;
-    }
-
-    h1 {
-      font-size: 40px;
-      font-weight: 300;
-      margin: 0px;
-    }
-
-    .intro-text {
-      flex: 1;
-      flex-direction: column;
-      font-size: 18px;
-      color: rgb(91, 87, 87);
-      line-height: 1.5;
-      margin-left: 75px;
-    }
-
-    .flower_banner {
-      height: 300px;
-      width: auto;
-      mix-blend-mode: multiply;
-    }
-
-    .questions_container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin-top: 40px;
-      margin-bottom: 20px;
-    }
-
-    .next_question {
-      margin-bottom: 0px;
-    }
-
-    .question_button {
-      width: 100%;
-      padding: 15px;
-      text-align: left;
-      background-color: #f7f4ed;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      font-weight: 400;
-      border-top: 1px solid #3a5a40;
-      height: 75px;
-      position: relative;
-      color: #f28c38;
-    }
-
-    .current_question_button {
-      border: 1px solid #3a5a40;
-      margin-bottom: 10px;
-    }
-
-    .question_answer {
-      display: none;
-      padding: 0 20px;
-      color: rgb(91, 87, 87);
-      font-size: 17px;
-    }
-
-    .question_button:hover {
-      background-color: #d6ffb0;
-    }
-
-    .next_section {
-      width: 60%;
-    }
-
-    .section_title {
-      color: #3a5a40;
-    }
-
-    i {
-      float: right;
-      margin-right: 2px;
-    }
-
-    /* Footer CSS */
-    .footer_div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      height: 150px;
-      width: 100%;
-      background-color: #3a5a40;
-    }
-
-    .footer_text {
-      color: rgb(255, 255, 255);
-      font-weight: 800;
-      margin-top: 20px;
-      margin-bottom: 15px;
-      font-size: 30px;
-    }
-
-    .icons_footer {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      font-size: 25px;
-      color: rgb(255, 255, 255);
-      gap: 30px;
-    }
-
-    .copywrite_text {
-      color: rgb(255, 255, 255);
-    }
-
-    @media (max-width: 768px) {
-      .banner-links a {
-        font-size: 8px;
-        color: rgb(113, 120, 103);
-        white-space: nowrap;
+    <meta charset="utf-8" />
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvLKwH00PTeL3Lq01dniKydfM4gGkZAhE&callback=initMap&libraries=maps,marker&v=beta"
+    ></script>
+    <style type="text/css">
+      body,
+      html {
+        margin: 0px;
         padding: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: #f7f4ed;
       }
 
-      .banner-links {
-        gap: 6px;
+      .banner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "Montserrat", sans-serif;
+        background-color: #f7f4ed;
+        width: 100%;
+        height: 70px;
+        padding: 0;
+        margin-bottom: 0px;
+      }
+
+      .banner-title {
+        color: rgb(113, 120, 103);
+        position: relative;
+        text-decoration: none;
       }
 
       .banner-title img {
-        width: 100px;
+        width: 150px;
         height: auto;
       }
 
+      .banner-links {
+        display: flex;
+        gap: 60px;
+      }
+
+      .banner-links a {
+        font-size: 1em;
+        color: #3a5a40;
+        font-weight: 500;
+        text-decoration: none;
+      }
+
+      .banner-links a:hover {
+        color: orange;
+      }
+
       .right {
-        margin-left: 0px;
-        margin-right: 5px;
-        margin-top: 0px;
-        margin-bottom: 0px;
+        margin-right: 200px;
       }
 
       .left {
-        margin-left: 5px;
-        margin-right: 0px;
-        margin-top: 0px;
-        margin-bottom: 0px;
+        margin-left: 200px;
       }
 
       .intro {
-        flex-direction: column;
-        align-items: start;
-        height: 60%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(242, 220, 180);
+        width: 100%;
+        height: auto;
+        flex-wrap: wrap;
       }
 
-      .flower_banner {
-        display: none;
+      h1 {
+        font-size: 40px;
+        font-weight: 300;
+        margin: 0px;
       }
 
       .intro-text {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 14px;
-        text-align: center;
-        margin-left: auto;
-        margin: auto;
+        flex: 1;
+        flex-direction: column;
+        font-size: 18px;
+        color: rgb(91, 87, 87);
+        line-height: 1.5;
+        margin-left: 75px;
+      }
+
+      .flower_banner {
+        height: 300px;
+        width: auto;
+        mix-blend-mode: multiply;
       }
 
       .questions_container {
-        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+
+      .next_question {
+        margin-bottom: 0px;
       }
 
       .question_button {
-        font-size: 12px;
+        width: 100%;
+        padding: 15px;
+        text-align: left;
+        background-color: #f7f4ed;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        font-weight: 400;
+        border-top: 1px solid #3a5a40;
+        height: 75px;
+        position: relative;
+        color: #f28c38;
       }
 
-      .question_button:hover {
-        background-color: transparent;
+      .current_question_button {
+        border: 1px solid #3a5a40;
+        margin-bottom: 10px;
       }
 
       .question_answer {
-        font-size: 14px;
-      }
-    }
-
-    @media (min-width: 510px) and (max-width: 900px) {
-      .banner-links a {
-        font-size: 11px;
-        color: rgb(113, 120, 103);
-        white-space: nowrap;
-        padding: 0px;
-      }
-
-      .banner-links {
-        gap: 12px;
-      }
-
-      .banner-title img {
-        width: 100px;
-        height: auto;
-      }
-
-      .right {
-        margin-left: 0px;
-        margin-right: 7px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-      }
-
-      .left {
-        margin-left: 7px;
-        margin-right: 0px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-      }
-
-      .intro {
-        flex-direction: column;
-        align-items: start;
-        height: 60%;
-      }
-
-      .flower_banner {
         display: none;
-      }
-
-      .intro-text {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 0 20px;
+        color: rgb(91, 87, 87);
         font-size: 17px;
-        text-align: center;
-        margin-left: auto;
-        margin: auto;
-      }
-
-      .questions_container {
-        width: 100%;
-      }
-
-      .question_button {
-        font-size: 15px;
       }
 
       .question_button:hover {
         background-color: #d6ffb0;
       }
 
-      .question_answer {
-        font-size: 15px;
+      .next_section {
+        width: 60%;
       }
-    }
-  </style>
-</head>
 
-<body>
-  <div class="banner">
-    <div class="banner-links left">
-      <a href="about.html">About Us</a>
-      <a href="contact.html">Contact Us</a>
-      <a href="events.html">Events</a>
+      .section_title {
+        color: #3a5a40;
+      }
+
+      i {
+        float: right;
+        margin-right: 2px;
+      }
+
+      /* Footer CSS */
+      .footer_div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 150px;
+        width: 100%;
+        background-color: #3a5a40;
+      }
+
+      .footer_text {
+        color: rgb(255, 255, 255);
+        font-weight: 800;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        font-size: 30px;
+      }
+
+      .icons_footer {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        gap: 30px;
+      }
+
+      .copywrite_text {
+        color: rgb(255, 255, 255);
+      }
+
+      @media (max-width: 768px) {
+        .banner-links a {
+          font-size: 8px;
+          color: rgb(113, 120, 103);
+          white-space: nowrap;
+          padding: 0px;
+        }
+
+        .banner-links {
+          gap: 6px;
+        }
+
+        .banner-title img {
+          width: 100px;
+          height: auto;
+        }
+
+        .right {
+          margin-left: 0px;
+          margin-right: 5px;
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
+
+        .left {
+          margin-left: 5px;
+          margin-right: 0px;
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
+
+        .intro {
+          flex-direction: column;
+          align-items: start;
+          height: 60%;
+        }
+
+        .flower_banner {
+          display: none;
+        }
+
+        .intro-text {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 14px;
+          text-align: center;
+          margin-left: auto;
+          margin: auto;
+        }
+
+        .questions_container {
+          width: 100%;
+        }
+
+        .question_button {
+          font-size: 12px;
+        }
+
+        .question_button:hover {
+          background-color: transparent;
+        }
+
+        .question_answer {
+          font-size: 14px;
+        }
+      }
+
+      @media (min-width: 510px) and (max-width: 900px) {
+        .banner-links a {
+          font-size: 11px;
+          color: rgb(113, 120, 103);
+          white-space: nowrap;
+          padding: 0px;
+        }
+
+        .banner-links {
+          gap: 12px;
+        }
+
+        .banner-title img {
+          width: 100px;
+          height: auto;
+        }
+
+        .right {
+          margin-left: 0px;
+          margin-right: 7px;
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
+
+        .left {
+          margin-left: 7px;
+          margin-right: 0px;
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
+
+        .intro {
+          flex-direction: column;
+          align-items: start;
+          height: 60%;
+        }
+
+        .flower_banner {
+          display: none;
+        }
+
+        .intro-text {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 17px;
+          text-align: center;
+          margin-left: auto;
+          margin: auto;
+        }
+
+        .questions_container {
+          width: 100%;
+        }
+
+        .question_button {
+          font-size: 15px;
+        }
+
+        .question_button:hover {
+          background-color: #d6ffb0;
+        }
+
+        .question_answer {
+          font-size: 15px;
+        }
+
+        #map {
+          width: auto;
+          height: auto;
+          visibility: visible !important
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="banner">
+      <div class="banner-links left">
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="events.html">Events</a>
+      </div>
+      <a class="banner-title" href="./index.html">
+        <img src="../static/images/secondarylogo50k.png" alt="Store Logo" />
+      </a>
+
+      <div class="banner-links right">
+        <a href="order.html">Order Now</a>
+        <a href="faq.html">FAQ</a>
+        <a href="testimonials.html">Testimonials</a>
+      </div>
     </div>
-    <a class="banner-title" href="./index.html">
-      <img src="../static/images/secondarylogo50k.png" alt="Store Logo" />
-    </a>
 
-    <div class="banner-links right">
-      <a href="order.html">Order Now</a>
-      <a href="faq.html">FAQ</a>
-      <a href="testimonials.html">Testimonials</a>
+    <div class="intro">
+      <div class="intro-text">
+        <h1>Frequently Asked Questions</h1>
+        <p>
+          At Borcelle Floral Studio, we believe that beauty and nature should
+          always be in harmony. That's why we offer fresh, handpicked flowers
+          that not only brighten your space but also bring the soothing essence
+          of nature indoors. Our arrangements are crafted with care, using
+          sustainably sourced blooms that fill your home with vibrant colors and
+          natural fragrances. Each bouquet is thoughtfully designed to reflect
+          the season and celebrate life's special moments, making it the perfect
+          choice for any occasion. Whether you're gifting a loved one or
+          treating yourself, our flowers are guaranteed to leave a lasting
+          impression.
+        </p>
+      </div>
+      <img
+        class="flower_banner"
+        src="../static/images/flower_banner_faq.jpg"
+        alt="bouqet of flowers"
+      />
     </div>
-  </div>
 
-  <div class="intro">
-    <div class="intro-text">
-      <h1>Frequently Asked Questions</h1>
-      <p>
-        At Borcelle Floral Studio, we believe that beauty and nature should
-        always be in harmony. That's why we offer fresh, handpicked flowers
-        that not only brighten your space but also bring the soothing essence
-        of nature indoors. Our arrangements are crafted with care, using
-        sustainably sourced blooms that fill your home with vibrant colors and
-        natural fragrances. Each bouquet is thoughtfully designed to reflect
-        the season and celebrate life's special moments, making it the perfect
-        choice for any occasion. Whether you're gifting a loved one or
-        treating yourself, our flowers are guaranteed to leave a lasting
-        impression.
+    <div class="questions_container">
+      <div class="next_section">
+        <h2 class="section_title">General</h2>
+
+        <div class="next_question">
+          <button class="question_button">
+            What areas do you deliver to? <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>We deliver to:</p>
+            <ul>
+              <li>Boston</li>
+              <li>Medford</li>
+              <li>Cambrige</li>
+              <li>Somerville</li>
+              <li>Everett</li>
+              <li>Malden</li>
+              <li>Revere</li>
+              <li>Chelsea</li>
+            </ul>
+            <p>
+              If you are unsure if we deliver to your area, please contact us!
+            </p>
+            <div id="map" style="visibility: visible !important; height: 500px; width: 100%; margin-left: auto; margin-right: auto; margin-bottom: 10px;">hello</div>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            What are your store hours? <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>We are open Monday to Saturday from 9 AM to 6 PM.</p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            How can I contact customer support?
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>
+              You can reach us via our Contact Us page or by phone at
+              <a href="tel:9144334333">(914) 433-4333</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            Do you offer same-day delivery? <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>Yes, for orders placed before 12 PM.</p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            Can I schedule a delivery in advance?
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>Yes, you can choose a future delivery date at checkout.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="next_section">
+        <h2 class="section_title">Ordering & Payment</h2>
+
+        <div class="next_question">
+          <button class="question_button">
+            How do I place an order online? <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>
+              Simply browse our collection, add your favorite arrangement to the
+              cart, and proceed to checkout. You can also order by phone!
+            </p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            What payment methods do you accept?
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>We accept all major credit cards and PayPal.</p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            Can I change or cancel my order after placing it?
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>Yes, within 1 hour of placing the order.</p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            Is there a minimum order amount for delivery?
+          </button>
+          <div class="question_answer">
+            <p>Yes, the minimum order is $25 for delivery.</p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            Can I order flowers for delivery outside your delivery zones?
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>Currently, we only deliver to our specified areas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="next_section">
+        <h2 class="section_title">Delivery & Shipping</h2>
+
+        <div class="next_question">
+          <button class="question_button">
+            How much is the delivery fee? <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>Delivery fees start at $5, depending on location.</p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            What time will my flowers be delivered?
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>We deliver between 9 AM and 6 PM.</p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            Can I track my delivery? <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>
+              Yes, you’ll receive a tracking link once your order is dispatched.
+            </p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            What happens if the recipient is not home?
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>We’ll leave the flowers in a safe spot or with a neighbor.</p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            Do you deliver on holidays? <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>Yes, we deliver on most holidays.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="next_section">
+        <h2 class="section_title">Custom Orders & Special Requests</h2>
+
+        <div class="next_question">
+          <button class="question_button">
+            Can I customize a flower arrangement?
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>Yes. We offer custom flower arrangement options.</p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            Do you offer flowers for weddings or large events?
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>Yes, contact us for a consultation.</p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            Can I include a personal message with my flowers?
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>Yes, add your message at checkout.</p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            Can I request specific flowers or colors in my arrangement?
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>Yes, you can leave special requests when ordering.</p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            Do you provide flower arrangements for businesses or corporate
+            events? <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>Yes, we offer custom solutions for businesses.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer_div">
+      <p class="footer_text">Borcelle Floral Studio</p>
+      <div class="icons_footer">
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-snapchat"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-facebook"></i>
+      </div>
+      <p class="copywrite_text">
+        &copy; 2024 Borcelle Floral Studio. All rights reserved.
       </p>
     </div>
-    <img class="flower_banner" src="../static/images/flower_banner_faq.jpg" alt="bouqet of flowers" />
-  </div>
 
-  <div class="questions_container">
-    <div class="next_section">
-      <h2 class="section_title">General</h2>
+    <script>
+      $(document).ready(function () {
+        $(".question_button").click(function () {
+          $(".question_answer").slideUp(200);
+          $(".current_question_button i")
+            .removeClass("fa-angle-up")
+            .addClass("fa-angle-down");
+          $(".question_button").removeClass("current_question_button");
 
-      <div class="next_question">
-        <button class="question_button">
-          What areas do you deliver to? <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>We deliver to:</p>
-          <ul>
-            <li>Boston</li>
-            <li>Medford</li>
-            <li>Cambrige</li>
-            <li>Somerville</li>
-            <li>Brookline</li>
-            <li>Newton</li>
-            <li>Watertown</li>
-            <li>Malden</li>
-            <li>Chelsea</li>
-            <li>Everett</li>
-            <li>Arlington</li>
-            <li>Belmont</li>
-          </ul>
-          <p>
-            If you are unsure if we deliver to your area, please contact us!
-          </p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          What are your store hours? <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>We are open Monday to Saturday from 9 AM to 6 PM.</p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          How can I contact customer support?
-          <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>
-            You can reach us via our Contact Us page or by phone at (555)
-            123-4567.
-          </p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          Do you offer same-day delivery? <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>Yes, for orders placed before 12 PM.</p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          Can I schedule a delivery in advance?
-          <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>Yes, you can choose a future delivery date at checkout.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="next_section">
-      <h2 class="section_title">Ordering & Payment</h2>
-
-      <div class="next_question">
-        <button class="question_button">
-          How do I place an order online? <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>
-            Simply browse our collection, add your favorite arrangement to the
-            cart, and proceed to checkout. You can also order by phone!
-          </p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          What payment methods do you accept?
-          <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>We accept all major credit cards and PayPal.</p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          Can I change or cancel my order after placing it?
-          <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>Yes, within 1 hour of placing the order.</p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          Is there a minimum order amount for delivery?
-        </button>
-        <div class="question_answer">
-          <p>Yes, the minimum order is $25 for delivery.</p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          Can I order flowers for delivery outside your delivery zones?
-          <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>Currently, we only deliver to our specified areas.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="next_section">
-      <h2 class="section_title">Delivery & Shipping</h2>
-
-      <div class="next_question">
-        <button class="question_button">
-          How much is the delivery fee? <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>Delivery fees start at $5, depending on location.</p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          What time will my flowers be delivered?
-          <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>We deliver between 9 AM and 6 PM.</p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          Can I track my delivery? <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>
-            Yes, you’ll receive a tracking link once your order is dispatched.
-          </p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          What happens if the recipient is not home?
-          <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>We’ll leave the flowers in a safe spot or with a neighbor.</p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          Do you deliver on holidays? <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>Yes, we deliver on most holidays.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="next_section">
-      <h2 class="section_title">Custom Orders & Special Requests</h2>
-
-      <div class="next_question">
-        <button class="question_button">
-          Can I customize a flower arrangement?
-          <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>Yes. We offer custom flower arrangement options.</p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          Do you offer flowers for weddings or large events?
-          <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>Yes, contact us for a consultation.</p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          Can I include a personal message with my flowers?
-          <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>Yes, add your message at checkout.</p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          Can I request specific flowers or colors in my arrangement?
-          <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>Yes, you can leave special requests when ordering.</p>
-        </div>
-      </div>
-
-      <div class="next_question">
-        <button class="question_button">
-          Do you provide flower arrangements for businesses or corporate
-          events? <i class="fas fa-angle-down"></i>
-        </button>
-        <div class="question_answer">
-          <p>Yes, we offer custom solutions for businesses.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer_div">
-    <p class="footer_text">Borcelle Floral Studio</p>
-    <div class="icons_footer">
-      <i class="fab fa-instagram"></i>
-      <i class="fab fa-snapchat"></i>
-      <i class="fab fa-twitter"></i>
-      <i class="fab fa-facebook"></i>
-    </div>
-    <p class="copywrite_text">
-      &copy; 2024 Borcelle Floral Studio. All rights reserved.
-    </p>
-  </div>
-
-  <script>
-    $(document).ready(function () {
-      $(".question_button").click(function () {
-        $(".question_answer").slideUp(200);
-        $(".current_question_button i")
-          .removeClass("fa-angle-up")
-          .addClass("fa-angle-down");
-        $(".question_button").removeClass("current_question_button");
-
-        if (!$(this).next(".question_answer").is(":visible")) {
-          $(this).next(".question_answer").slideDown(200);
-          $(this).addClass("current_question_button");
-          $(this)
-            .find("i")
-            .removeClass("fa-angle-down")
-            .addClass("fa-angle-up");
-        }
+          if (!$(this).next(".question_answer").is(":visible")) {
+            $(this).next(".question_answer").slideDown(200);
+            $(this).addClass("current_question_button");
+            $(this)
+              .find("i")
+              .removeClass("fa-angle-down")
+              .addClass("fa-angle-up");
+          }
+        });
       });
-    });
-  </script>
-</body>
+    </script>
+    <script>
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 11,
+          center: { lat: 42.3601, lng: -71.0589 },
+          mapTypeId: "terrain",
+        });
 
+        const bostonCoords = [
+          { lat: 42.22944032591052, lng: -71.12717524108194 },
+          { lat: 42.283735587035416, lng: -71.1907521930559 },
+          { lat: 42.39012187727108, lng: -71.07547530211413 },
+          { lat: 42.3906378765876, lng: -70.98744567630405 },
+        ];
+
+        const medfordCoords = [
+          { lat: 42.45350643527756, lng: -71.11922640717648 },
+          { lat: 42.435898762080484, lng: -71.14634890378638 },
+          { lat: 42.39661202607398, lng: -71.10103030185591 },
+          { lat: 42.444386531697724, lng: -71.08592410121243 },
+        ];
+
+        const cambridgeCoords = [
+          { lat: 42.369732183872436, lng: -71.06633941761274 },
+          { lat: 42.369732183872436, lng: -71.06633941761274 },
+          { lat: 42.36646927550377, lng: -71.14398035814172 },
+          { lat: 42.40425383420654, lng: -71.1343673213686 },
+        ];
+
+        const somervilleCoords = [
+          { lat: 42.40405073175339, lng: -71.13456111674874 },
+          { lat: 42.37438279884146, lng: -71.10314708585312 },
+          { lat: 42.37368530697633, lng: -71.07336383799353 },
+          { lat: 42.39935689498229, lng: -71.08666760544385 },
+          { lat: 42.41789227460707, lng: -71.12708592745639 },
+        ];
+
+        const everettCoords = [
+          { lat: 42.42422992210172, lng: -71.0284823501236 },
+          { lat: 42.38880299326876, lng: -71.0569781377011 },
+          { lat: 42.39691682886955, lng: -71.0762042123461 },
+          { lat: 42.414725554537924, lng: -71.0732001383545 },
+        ];
+
+        const maldenCoords = [
+          { lat: 42.4446549078484, lng: -71.02571755899514 },
+          { lat: 42.424130358050206, lng: -71.02820664887389 },
+          { lat: 42.41329524677292, lng: -71.07884675453768 },
+          { lat: 42.44482206813666, lng: -71.08542963081845 },
+        ];
+
+        const revereCoords = [
+          { lat: 42.39755145954689, lng: -71.01303714285282 },
+          { lat: 42.39147362224583, lng: -70.98093562225928 },
+          { lat: 42.441405648091596, lng: -70.96016459637448 },
+          { lat: 42.44976600821244, lng: -71.01852946249706 },
+        ];
+
+        const chelseaCoords = [
+          { lat: 42.41432774713589, lng: -71.03328013754025 },
+          { lat: 42.38783447430125, lng: -71.05276370314293 },
+          { lat: 42.384664673458744, lng: -71.02735782024251 },
+          { lat: 42.40076560305704, lng: -71.0102775138331 },
+        ];
+
+        const bostonPolygon = new google.maps.Polygon({
+          paths: bostonCoords,
+          strokeColor: "#FF0000",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FF0000",
+          fillOpacity: 0.35,
+        });
+
+        const medfordPolygon = new google.maps.Polygon({
+          paths: medfordCoords,
+          strokeColor: "#0000FF",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#0000FF",
+          fillOpacity: 0.35,
+        });
+
+        const cambridgePolygon = new google.maps.Polygon({
+          paths: cambridgeCoords,
+          strokeColor: "#00FF00",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#00FF00",
+          fillOpacity: 0.35,
+        });
+
+        const somervillePolygon = new google.maps.Polygon({
+          paths: somervilleCoords,
+          strokeColor: "#FFFF00",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FFFF00",
+          fillOpacity: 0.35,
+        });
+
+        const everettPolygon = new google.maps.Polygon({
+          paths: everettCoords,
+          strokeColor: "#00FFFF",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#00FFFF",
+          fillOpacity: 0.35,
+        });
+
+        const maldenPolygon = new google.maps.Polygon({
+          paths: maldenCoords,
+          strokeColor: "#FFA500",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FFA500",
+          fillOpacity: 0.35,
+        });
+
+        const reverePolygon = new google.maps.Polygon({
+          paths: revereCoords,
+          strokeColor: "#FFA500",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FFA500",
+          fillOpacity: 0.35,
+        });
+
+        const chelseaPolygon = new google.maps.Polygon({
+          paths: chelseaCoords,
+          strokeColor: "#FFA500",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FFA500",
+          fillOpacity: 0.35,
+        });
+
+        bostonPolygon.setMap(map);
+        medfordPolygon.setMap(map);
+        cambridgePolygon.setMap(map);
+        somervillePolygon.setMap(map);
+        everettPolygon.setMap(map);
+        maldenPolygon.setMap(map);
+        reverePolygon.setMap(map);
+        chelseaPolygon.setMap(map);
+      }
+    </script>
+  </body>
 </html>
