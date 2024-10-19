@@ -14,7 +14,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     />
 
-    <meta charset="utf-8" />
     <script
       src="https://code.jquery.com/jquery-3.7.1.js"
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
@@ -169,6 +168,12 @@
         margin-right: 2px;
       }
 
+      #map {
+        width: auto;
+        height: auto;
+        visibility: visible !important;
+      }
+
       /* Footer CSS */
       .footer_div {
         display: flex;
@@ -199,6 +204,60 @@
 
       .copywrite_text {
         color: rgb(255, 255, 255);
+      }
+
+      #map {
+        visibility: visible !important;
+        height: 500px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+      }
+
+      .question_answer,
+      .question_button,
+      .question_answer ul,
+      .question_answer li {
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .address-container {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .address-container p {
+        margin-right: 10px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 18px;
+        color: #5b5757;
+      }
+
+      input#userAddress {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #cccccc;
+        font-size: 16px;
+        width: 250px;
+        margin-right: 10px;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      button#getEstimate {
+        padding: 10px 15px;
+        background-color: #3a5a40;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      button#getEstimate:hover {
+        background-color: #2d4831;
       }
 
       @media (max-width: 768px) {
@@ -267,6 +326,18 @@
         .question_answer {
           font-size: 14px;
         }
+
+        button#getEstimate {
+          padding: 7px 12px;
+          font-size: 12px;
+        }
+
+        input#userAddress {
+        width: 45%;
+        font-size: 12px;
+      }
+
+      
       }
 
       @media (min-width: 510px) and (max-width: 900px) {
@@ -333,13 +404,7 @@
         }
 
         .question_answer {
-          font-size: 15px;
-        }
-
-        #map {
-          width: auto;
-          height: auto;
-          visibility: visible !important
+          font-size: 13px;
         }
       }
     </style>
@@ -399,7 +464,7 @@
             <ul>
               <li>Boston</li>
               <li>Medford</li>
-              <li>Cambrige</li>
+              <li>Cambridge</li>
               <li>Somerville</li>
               <li>Everett</li>
               <li>Malden</li>
@@ -409,7 +474,7 @@
             <p>
               If you are unsure if we deliver to your area, please contact us!
             </p>
-            <div id="map" style="visibility: visible !important; height: 500px; width: 100%; margin-left: auto; margin-right: auto; margin-bottom: 10px;">hello</div>
+            <div id="map"></div>
           </div>
         </div>
 
@@ -451,6 +516,23 @@
           </button>
           <div class="question_answer">
             <p>Yes, you can choose a future delivery date at checkout.</p>
+          </div>
+        </div>
+
+        <div class="next_question">
+          <button class="question_button">
+            Enter your address for delivery estimate
+            <i class="fas fa-angle-down"></i>
+          </button>
+          <div class="question_answer">
+            <p>Enter your address below:</p>
+            <input
+              type="text"
+              id="userAddress"
+              placeholder="Enter your address"
+            />
+            <button id="getEstimate">Get Estimate</button>
+            <p id="deliveryEstimate"></p>
           </div>
         </div>
       </div>
@@ -653,9 +735,11 @@
     </script>
     <script>
       function initMap() {
+        const storeLocation = { lat: 42.3601, lng: -71.0589 };
+
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 11,
-          center: { lat: 42.3601, lng: -71.0589 },
+          center: storeLocation,
           mapTypeId: "terrain",
         });
 
@@ -715,7 +799,6 @@
           { lat: 42.384664673458744, lng: -71.02735782024251 },
           { lat: 42.40076560305704, lng: -71.0102775138331 },
         ];
-
         const bostonPolygon = new google.maps.Polygon({
           paths: bostonCoords,
           strokeColor: "#FF0000",
@@ -796,6 +879,52 @@
         maldenPolygon.setMap(map);
         reverePolygon.setMap(map);
         chelseaPolygon.setMap(map);
+
+        document
+          .getElementById("getEstimate")
+          .addEventListener("click", function () {
+            const userAddress = document.getElementById("userAddress").value;
+            if (userAddress) {
+              const geocoder = new google.maps.Geocoder();
+              geocoder.geocode(
+                { address: userAddress },
+                function (results, status) {
+                  if (status === "OK") {
+                    const userLocation = results[0].geometry.location;
+
+                    const service = new google.maps.DistanceMatrixService();
+                    service.getDistanceMatrix(
+                      {
+                        origins: [storeLocation],
+                        destinations: [userLocation],
+                        travelMode: "DRIVING",
+                      },
+                      function (response, status) {
+                        if (status === "OK") {
+                          const travelTime =
+                            response.rows[0].elements[0].duration.text;
+                          document.getElementById(
+                            "deliveryEstimate"
+                          ).innerText =
+                            "Estimated Delivery Time: " + travelTime;
+                        } else {
+                          document.getElementById(
+                            "deliveryEstimate"
+                          ).innerText = "Unable to calculate delivery time.";
+                        }
+                      }
+                    );
+                  } else {
+                    document.getElementById("deliveryEstimate").innerText =
+                      "Address not found. Please try again!";
+                  }
+                }
+              );
+            } else {
+              document.getElementById("deliveryEstimate").innerText =
+                "Please enter a valid address.";
+            }
+          });
       }
     </script>
   </body>
