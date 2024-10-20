@@ -7,33 +7,35 @@
     <title>Testimonials</title>
     <link rel="stylesheet" href="../static/css/main.css">
     <link rel="stylesheet" href="../static/css/locations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
 <body>
     <header>
-        <img src="../static/images/secondarylogo50k.png" alt="Company Logo">
+        <nav id="main-nav">
+            <a href="index.html" class="logo-link">
+                <img src="../static/images/tertiarylogo50kb.png" alt="Company Logo" class="logo">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Events</a>
+                <a href="order.html">Order</a>
+                <a href="locations.html">Locations</a>
+                <a href="faq.html">FAQ</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
     </header>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="order.html">Order</a></li>
-            <li><a href="locations.html">Locations</a></li>
-        </ul>
-    </nav>
     <main>
         <h2>Our Locations</h2>
-        <p>
-            We're proud to serve communities across Massachusetts, providing beautiful floral arrangements and
-            exceptional
-            service. Visit us at any of our convenient locations, or order online for delivery to your area!
-        </p>
         <section id="locations">
             <div class="location">
                 <img src="../static/images/primarylogo50kbg.png" alt="Orchid Elegance">
                 <h3>Boston</h3>
                 <p><strong>Address:</strong> 123 Blossom Street, Boston, MA 02108</p>
                 <p><strong>Phone:</strong> (617) 555-1234</p>
-                <p><strong>Hours:</strong> Monday - Saturday: 9 AM - 7 PM, Sunday: 10 AM - 5 PM</p>
+                <p>Mon - Sat: 9 AM - 7 PM <br> Sun: 10 AM - 5 PM</p>
                 <p><strong>Services:</strong> In-store shopping, custom arrangements, same-day delivery in Greater
                     Boston</p>
             </div>
@@ -43,7 +45,7 @@
                 <h3>Cambridge</h3>
                 <p><strong>Address:</strong> 456 Garden Path, Cambridge, MA 02139</p>
                 <p><strong>Phone:</strong> (617) 555-5678</p>
-                <p><strong>Hours:</strong> Monday - Friday: 9 AM - 6 PM, Saturday: 10 AM - 5 PM</p>
+                <p>Mon - Fri: 9 AM - 6 PM <br> Sat: 10 AM - 5 PM</p>
                 <p><strong>Services:</strong> In-store consultations, local delivery, wedding flower services</p>
             </div>
 
@@ -52,10 +54,9 @@
                 <h3>Waltham</h3>
                 <p><strong>Address:</strong> 789 Rose Avenue, Waltham, MA 02453</p>
                 <p><strong>Phone:</strong> (781) 555-2345</p>
-                <p><strong>Hours:</strong> Monday - Saturday: 9 AM - 7 PM, Sunday: Closed</p>
+                <p>Mon - Sat: 9 AM - 7 PM <br> Sun: Closed</p>
                 <p><strong>Services:</strong> In-store shopping, event floral services, delivery to Waltham and
-                    surrounding
-                    areas</p>
+                    surrounding areas</p>
             </div>
 
             <div class="location">
@@ -63,7 +64,7 @@
                 <h3>Worcester</h3>
                 <p><strong>Address:</strong> 321 Petal Place, Worcester, MA 01604</p>
                 <p><strong>Phone:</strong> (508) 555-6789</p>
-                <p><strong>Hours:</strong> Monday - Saturday: 8 AM - 6 PM, Sunday: 10 AM - 4 PM</p>
+                <p>Mon - Sat: 8 AM - 6 PM <br> Sun: 10 AM - 4 PM</p>
                 <p><strong>Services:</strong> In-store shopping, same-day delivery, funeral and sympathy arrangements
                 </p>
             </div>
@@ -73,10 +74,9 @@
                 <h3>Newton</h3>
                 <p><strong>Address:</strong> 654 Blooming Lane, Newton, MA 02458</p>
                 <p><strong>Phone:</strong> (617) 555-3456</p>
-                <p><strong>Hours:</strong> Monday - Friday: 9 AM - 7 PM, Saturday: 9 AM - 5 PM, Sunday: Closed</p>
+                <p>Mon - Fri: 9 AM - 7 PM <br> Sat: 9 AM - 5 PM <br> Sun: Closed</p>
                 <p><strong>Services:</strong> Custom floral designs, corporate event services, delivery to Newton and
-                    nearby
-                    towns</p>
+                    nearby towns</p>
             </div>
 
             <div class="location">
@@ -84,12 +84,12 @@
                 <h3>Cape Cod (Hyannis)</h3>
                 <p><strong>Address:</strong> 987 Coastal Drive, Hyannis, MA 02601</p>
                 <p><strong>Phone:</strong> (508) 555-4321</p>
-                <p><strong>Hours:</strong> Monday - Saturday: 9 AM - 6 PM, Sunday: 10 AM - 5 PM</p>
+                <p>Mon - Sat: 9 AM - 6 PM <br> Sun: 10 AM - 5 PM</p>
                 <p><strong>Services:</strong> Beach weddings, seasonal arrangements, local delivery throughout Cape Cod
                 </p>
             </div>
         </section>
-        <div style="text-align: center;">
+        <div style="text-align: center; padding: 20px;">
             <h3>Can't Make It In? We've Got You Covered!</h3>
             <p>
                 Order online or give us a call to arrange delivery to any of these locations. No matter where you are in
@@ -98,7 +98,16 @@
         </div>
     </main>
     <footer>
-        <p>&copy; 2023 Borcelle Floral Studio. All rights reserved.</p>
+        <p class="footer-text">Borcelle Floral Studio</p>
+        <div class="icons-footer">
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-snapchat"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-facebook"></i>
+        </div>
+        <p style="padding: 10px;">
+            &copy; 2024 Borcelle Floral Studio. All rights reserved.
+        </p>
     </footer>
 </body>
 

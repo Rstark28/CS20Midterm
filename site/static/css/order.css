@@ -1,16 +1,15 @@
 #featured-arrangements {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
 .arrangement {
     background-color: var(--background-color);
     border: 2px solid var(--primary-color);
     padding: 20px;
-    margin: 20px;
     border-radius: 10px;
     text-align: center;
-    width: 250px;
 }
 
 .arrangement h3 {
@@ -52,4 +51,62 @@
     font-size: 1.5rem;
     color: var(--primary-color);
     font-weight: bold;
+}
+
+#order {
+    margin-top: 50px;
+    background-color: #f8d7a1;
+    padding: 20px;
+    border-radius: 10px;
+    display: none;
+}
+
+#order-form {
+    padding: 20px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+#order-form label {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 5px;
+}
+
+#order-form input,
+#order-form select,
+#order-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    grid-column: span 2;
+}
+
+#order-form .half-width {
+    grid-column: span 1;
+}
+
+#order-form h2 {
+    grid-column: span 2;
+}
+
+#order-form button {
+    grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+    #featured-arrangements {
+        grid-template-columns: 1fr;
+    }
+
+    .arrangement {
+        max-width: 350px;
+        margin: 0 auto 20px;
+    }
 }
