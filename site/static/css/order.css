@@ -4,16 +4,23 @@
     gap: 20px;
 }
 
+@media (min-width: 1200px) {
+    #featured-arrangements {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 .arrangement {
     background-color: var(--background-color);
     border: 2px solid var(--primary-color);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .arrangement h3 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--header-color);
 }
 
@@ -100,13 +107,4 @@
     grid-column: span 2;
 }
 
-@media (max-width: 768px) {
-    #featured-arrangements {
-        grid-template-columns: 1fr;
-    }
 
-    .arrangement {
-        max-width: 350px;
-        margin: 0 auto 20px;
-    }
-}

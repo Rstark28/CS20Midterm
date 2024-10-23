@@ -12,27 +12,47 @@
 
 <body>
     <header>
-        <nav id="main-nav" name="main-nav">
+        <nav>
             <a href="index.html" class="logo-link">
-                <img src="../static/images/tertiarylogo50kb.png" alt="Company Logo" class="logo" />
+                <img src="../static/images/tertiarylogodark50kb.png" alt="Company Logo" class="logo" />
             </a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="services.html">Events</a>
-                <a href="order.html">Order</a>
-                <a href="locations.html">Locations</a>
-                <a href="faq.html">FAQ</a>
-                <a href="contact.html">Contact</a>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html"><strong>HOME</strong></a>
+                <a href="about.html"><strong>ABOUT</strong></a>
+                <a href="services.html"><strong>SERVICES</strong></a>
+                <a href="locations.html"><strong>LOCATIONS</strong></a>
+                <a href="faq.html"><strong>FAQ</strong></a>
+                <a href="contact.html"><strong>CONTACT</strong></a>
+                <a href="order.html" class="order-link"><strong>ORDER</strong></a>
             </div>
         </nav>
     </header>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.getElementById('nav-toggle');
+            const navLinks = document.getElementById('nav-links');
+
+            navToggle.addEventListener('click', () => {
+                console.log('Toggle clicked');
+                navLinks.classList.toggle('active');
+            });
+        });
+    </script>
+
+
+
     <main>
         <h2>Featured Arrangements</h2>
         <section id="featured-arrangements">
             <div class="arrangement">
                 <img src="../static/images/primarylogo50kbg.png" alt="Orchid Elegance" />
-                <h3>Orchid Elegance</h3>
+                <h3>Orchid<br />Elegance</h3>
                 <p>$39.99</p>
                 <button class="add-to-cart" item-name="Orchid Elegance" item-price="39.99">
                     Add to Cart
@@ -40,7 +60,7 @@
             </div>
             <div class="arrangement">
                 <img src="../static/images/primarylogo50kbg.png" alt="Rose Bouquet" />
-                <h3>Rose Bouquet</h3>
+                <h3>Rose<br />Bouquet</h3>
                 <p>$29.99</p>
                 <button class="add-to-cart" item-name="Rose Bouquet" item-price="29.99">
                     Add to Cart
@@ -48,7 +68,7 @@
             </div>
             <div class="arrangement">
                 <img src="../static/images/primarylogo50kbg.png" alt="Sunflower Delight" />
-                <h3>Sunflower Delight</h3>
+                <h3>Sunflower<br />Delight</h3>
                 <p>$24.99</p>
                 <button class="add-to-cart" item-name="Sunflower Delight" item-price="24.99">
                     Add to Cart
@@ -56,7 +76,7 @@
             </div>
             <div class="arrangement">
                 <img src="../static/images/primarylogo50kbg.png" alt="Spring Tulips" />
-                <h3>Spring Tulips</h3>
+                <h3>Spring<br />Tulips</h3>
                 <p>$19.99</p>
                 <button class="add-to-cart" item-name="Spring Tulips" item-price="19.99">
                     Add to Cart
@@ -64,7 +84,7 @@
             </div>
             <div class="arrangement">
                 <img src="../static/images/primarylogo50kbg.png" alt="Wildflower Mix" />
-                <h3>Wildflower Mix</h3>
+                <h3>Wildflower<br />Mix</h3>
                 <p>$34.99</p>
                 <button class="add-to-cart" item-name="Wildflower Mix" item-price="34.99">
                     Add to Cart
@@ -72,9 +92,41 @@
             </div>
             <div class="arrangement">
                 <img src="../static/images/primarylogo50kbg.png" alt="Exotic Lilies" />
-                <h3>Exotic Lilies</h3>
+                <h3>Exotic<br />Lilies</h3>
                 <p>$44.99</p>
                 <button class="add-to-cart" item-name="Exotic Lilies" item-price="44.99">
+                    Add to Cart
+                </button>
+            </div>
+            <div class="arrangement">
+                <img src="../static/images/primarylogo50kbg.png" alt="Lavender Dreams" />
+                <h3>Lavender<br />Dreams</h3>
+                <p>$27.99</p>
+                <button class="add-to-cart" item-name="Lavender Dreams" item-price="27.99">
+                    Add to Cart
+                </button>
+            </div>
+            <div class="arrangement">
+                <img src="../static/images/primarylogo50kbg.png" alt="Peony Passion" />
+                <h3>Peony<br />Passion</h3>
+                <p>$32.99</p>
+                <button class="add-to-cart" item-name="Peony Passion" item-price="32.99">
+                    Add to Cart
+                </button>
+            </div>
+            <div class="arrangement">
+                <img src="../static/images/primarylogo50kbg.png" alt="Daisy Delight" />
+                <h3>Daisy<br />Delight</h3>
+                <p>$22.99</p>
+                <button class="add-to-cart" item-name="Daisy Delight" item-price="22.99">
+                    Add to Cart
+                </button>
+            </div>
+            <div class="arrangement">
+                <img src="../static/images/primarylogo50kbg.png" alt="Garden Glory" />
+                <h3>Garden<br />Glory</h3>
+                <p>$37.99</p>
+                <button class="add-to-cart" item-name="Garden Glory" item-price="37.99">
                     Add to Cart
                 </button>
             </div>
