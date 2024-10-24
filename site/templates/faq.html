@@ -38,7 +38,7 @@
         justify-content: space-between;
         align-items: center;
         font-family: "Montserrat", sans-serif;
-        background-color: #f7f4ed;
+        background-color: #3a5a40;
         width: 100%;
         height: 70px;
         padding: 0;
@@ -63,7 +63,7 @@
 
       .banner-links a {
         font-size: 1em;
-        color: #3a5a40;
+        color: #f7f4ed;
         font-weight: 500;
         text-decoration: none;
       }
@@ -216,7 +216,7 @@
       button#getEstimate {
         padding: 10px 15px;
         background-color: #3a5a40;
-        color: white;
+        color: rgb(255, 255, 255);
         border: none;
         border-radius: 5px;
         font-size: 16px;
@@ -226,6 +226,18 @@
 
       button#getEstimate:hover {
         background-color: #2d4831;
+      }
+
+      #storeLocationSelector {
+        margin-right: 20px;
+        margin-left: 10px;
+        padding: 6px 15px;
+        border-radius: 5px;
+        background-color: #3a5a40;
+        color: rgb(255, 255, 255);
+        font-family: "Montserrat", sans-serif;
+        text-align: center;
+        font-size: 16px;
       }
 
       /* Footer CSS */
@@ -260,10 +272,100 @@
         color: rgb(255, 255, 255);
       }
 
+      @media (min-width: 510px) and (max-width: 900px) {
+        .banner-links a {
+          font-size: 11px;
+          color: #f7f4ed;
+          white-space: nowrap;
+          padding: 0px;
+        }
+
+        .banner-links {
+          gap: 14px;
+        }
+
+        .banner-title img {
+          width: 100px;
+          height: auto;
+        }
+
+        .right {
+          margin-left: 0px;
+          margin-right: 15px;
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
+
+        .left {
+          margin-left: 15px;
+          margin-right: 0px;
+          margin-top: 0px;
+          margin-bottom: 0px;
+        }
+
+        .intro {
+          flex-direction: column;
+          align-items: start;
+          height: 60%;
+        }
+
+        .flower_banner {
+          display: none;
+        }
+
+        .intro-text {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 17px;
+          text-align: center;
+          margin-left: auto;
+          margin: auto;
+        }
+
+        .questions_container {
+          width: 100%;
+        }
+
+        .question_button {
+          font-size: 15px;
+        }
+
+        .question_button:hover {
+          background-color: #d6ffb0;
+        }
+
+        .question_answer {
+          font-size: 13px;
+        }
+
+        button#getEstimate {
+          padding: 3px 3px;
+          font-size: 12px;
+          margin-top: 0px;
+          margin-right: 0px;
+          margin-bottom: 0px;
+          margin-left: 15px;
+        }
+
+        input#userAddress {
+          width: 45%;
+          font-size: 12px;
+          margin-top: 5px;
+          margin-right: 0px;
+        }
+
+        #storeLocationSelector {
+          padding: 0;
+          font-size: 15px;
+          margin: 0;
+        }
+      }
+
       @media (max-width: 768px) {
         .banner-links a {
-          font-size: 8px;
-          color: rgb(113, 120, 103);
+          font-size: 9px;
+          color: #f7f4ed;
           white-space: nowrap;
           padding: 0px;
         }
@@ -328,85 +430,34 @@
         }
 
         button#getEstimate {
-          padding: 7px 12px;
-          font-size: 12px;
+          padding: 5px 5px;
+          font-size: 10px;
+          margin: 0px;
         }
 
         input#userAddress {
-        width: 45%;
-        font-size: 12px;
-      }
-
-      
-      }
-
-      @media (min-width: 510px) and (max-width: 900px) {
-        .banner-links a {
-          font-size: 11px;
-          color: rgb(113, 120, 103);
-          white-space: nowrap;
-          padding: 0px;
+          width: 50%;
+          font-size: 10px;
+          margin-top: 5px;
+          margin-right: 0px;
         }
 
-        .banner-links {
-          gap: 12px;
-        }
-
-        .banner-title img {
-          width: 100px;
-          height: auto;
-        }
-
-        .right {
-          margin-left: 0px;
-          margin-right: 20px;
-          margin-top: 0px;
-          margin-bottom: 0px;
-        }
-
-        .left {
-          margin-left: 20px;
+        #storeLocationSelector {
+          padding: 0;
+          font-size: 10px;
+          margin-left: 3px;
           margin-right: 0px;
           margin-top: 0px;
           margin-bottom: 0px;
         }
 
-        .intro {
-          flex-direction: column;
-          align-items: start;
-          height: 60%;
-        }
-
-        .flower_banner {
-          display: none;
-        }
-
-        .intro-text {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 17px;
-          text-align: center;
-          margin-left: auto;
-          margin: auto;
-        }
-
-        .questions_container {
-          width: 100%;
-        }
-
-        .question_button {
-          font-size: 15px;
-        }
-
-        .question_button:hover {
-          background-color: #d6ffb0;
-        }
-
-        .question_answer {
-          font-size: 13px;
+        #storeLocal {
+          font-size: 10px;
         }
       }
+
+
+
     </style>
   </head>
 
@@ -418,13 +469,13 @@
         <a href="events.html">Events</a>
       </div>
       <a class="banner-title" href="./index.html">
-        <img src="../static/images/secondarylogo50k.png" alt="Store Logo" />
+        <img src="../static/images/tertiarylogo50kb.png" alt="Store Logo" />
       </a>
 
       <div class="banner-links right">
         <a href="order.html">Order Now</a>
         <a href="faq.html">FAQ</a>
-        <a href="testimonials.html">Testimonials</a>
+        <a href="locations.html">Locations</a>
       </div>
     </div>
 
@@ -495,7 +546,7 @@
           <div class="question_answer">
             <p>
               You can reach us via our Contact Us page or by phone at
-              <a href="tel:9144334333">(914) 433-4333</a>
+              <a href="tel:6176275000">(617) 627-5000</a>
             </p>
           </div>
         </div>
@@ -525,7 +576,34 @@
             <i class="fas fa-angle-down"></i>
           </button>
           <div class="question_answer">
-            <p>Enter your address below:</p>
+            <label id="storeLocal">Choose a store location:</label>
+            <select id="storeLocationSelector">
+              <option value="42.36628064018915,-71.06780678241522">
+                Boston
+              </option>
+              <option value="42.36628064018915,-71.06780678241522">
+                Medford
+              </option>
+              <option value="42.36628064018915,-71.06780678241522">
+                Cambridge
+              </option>
+              <option value="42.36628064018915,-71.06780678241522">
+                Somerville
+              </option>
+              <option value="42.36628064018915,-71.06780678241522">
+                Everett
+              </option>
+              <option value="42.36628064018915,-71.06780678241522">
+                Malden
+              </option>
+              <option value="42.36628064018915,-71.06780678241522">
+                Revere
+              </option>
+              <option value="42.36628064018915,-71.06780678241522">
+                Chelsea
+              </option>
+              x
+            </select>
             <input
               type="text"
               id="userAddress"
@@ -735,7 +813,13 @@
     </script>
     <script>
       function initMap() {
-        const storeLocation = { lat: 42.3601, lng: -71.0589 };
+        const foundStoreCoordinates = document
+          .getElementById("storeLocationSelector")
+          .value.split(",");
+        const storeLocation = {
+          lat: parseFloat(foundStoreCoordinates[0]),
+          lng: parseFloat(foundStoreCoordinates[1]),
+        };
 
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 11,
