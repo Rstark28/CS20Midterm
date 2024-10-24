@@ -3,126 +3,111 @@
   --secondary-color: #f28c38;
   --background-color: #f5f5dc;
   --text-color: #333;
-  --nav-text-color: #3a5a40;
+  --nav-bar-color: #3a5a40;
+  --nav-text-color: #fff;
   --white: #fff;
   --hover-color: #f28c38;
 }
 
-/* Body Styling */
-body {
+/* General Styling */
+body,
+html {
   background-color: var(--background-color);
-  color: var(--text-color);
   line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Nav Bar Styling */
-nav {
-  background-color: var(--background-color);
+.navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  position: relative;
   padding: 20px 40px;
   width: 80%;
-  margin: 20px auto 0 auto;
+  margin: 20px auto;
+  background-color: var(--nav-bar-color);
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-nav .logo-link {
+.logo {
+  flex: 1;
+}
+
+.nav-links {
+  list-style: none;
   display: flex;
-  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+  flex: 3;
+  justify-content: space-around;
 }
 
-/* Default state of nav-links */
-nav .nav-links {
-  display: flex;
-  /* Show nav links by default on larger screens */
-  align-items: center;
-  justify-content: center;
-  gap: 60px;
+.nav-links li {
+  text-align: center;
+  margin: 0;
+  padding: 1rem 0;
 }
 
-/* Nav links styles */
-nav a {
+.nav-links a {
   color: var(--nav-text-color);
   text-decoration: none;
   font-size: 1.2rem;
-  position: relative;
 }
 
-.nav-links a::after {
-  content: "";
-  display: block;
-  width: 0;
-  height: 2px;
-  background: var(--hover-color);
-  transition: width 0.5s;
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-nav .order-link {
+.nav-links li a.order-link {
+  background-color: var(--secondary-color);
+  color: var(--white);
+  border: 2px solid #e07b2e; /* Slightly darker shade of secondary color */
   padding: 10px 20px;
-  border-radius: 50px;
-  background-color: var(--background-color);
-  border: 2px solid var(--secondary-color);
-  color: var(--secondary-color);
+  border-radius: 100px;
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* For mobile view */
+.nav-links li a.order-link:hover {
+  background-color: var(--white);
+  color: var(--nav-text-color);
+}
+
 .nav-toggle {
   display: none;
-  /* Hidden by default */
-  flex-direction: column;
+  background-color: transparent;
+  border: none;
+  color: var(--nav-text-color);
+  font-size: 1.5rem;
   cursor: pointer;
 }
 
-.nav-toggle .bar {
-  height: 3px;
-  width: 25px;
-  background-color: var(--nav-text-color);
-  margin: 3px 0;
-  transition: all 0.3s ease;
-}
-
-/* Responsive styles */
+/* Responsive Styles */
 @media (max-width: 1000px) {
-  nav .nav-links {
+  .nav-links {
     display: none;
-    /* Hide nav links by default on mobile */
     flex-direction: column;
-    /* Stack links vertically */
     position: absolute;
-    /* Positioning below the nav toggle */
-    top: 100%;
-    /* Aligns just below the nav bar */
+    top: 80%;
     left: 0;
-    /* Align to the left */
-    right: 0;
-    /* Stretch to the right */
-    background-color: var(--background-color);
-    border-radius: 0 0 10px 10px;
-    /* Rounded bottom corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Optional shadow for dropdown */
-    z-index: 10;
-    /* Ensure it appears above other content */
+    width: 100%;
+    background-color: var(--nav-bar-color);
+    border-radius: 10px;
   }
 
-  nav .nav-links.active {
-    display: flex;
-    /* Show nav links when active */
+  .nav-links li {
+    text-align: center;
+    margin: 0;
+    padding: 1rem 0;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
   }
 
   .nav-toggle {
+    display: block;
+  }
+
+  .nav-links.active {
     display: flex;
-    /* Show toggle button on mobile */
   }
 }
 
@@ -148,11 +133,19 @@ h3 {
   padding-bottom: 10px;
 }
 
-p,
-span,
-li {
-  font-weight: 400;
-  line-height: 1.6;
+a {
+  text-decoration: none;
+}
+
+/* Responsive Design for Titles */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
 }
 
 /* Footer Styling */
@@ -170,8 +163,7 @@ footer {
 .footer-text {
   color: var(--background-color);
   font-weight: 800;
-  margin-top: 20px;
-  margin-bottom: 15px;
+  margin: 20px 0 15px;
   font-size: 30px;
 }
 
@@ -204,22 +196,12 @@ button:hover {
 
 /* List Styling */
 ol {
-  list-style-type: decimal;
+  list-style-type: none;
   margin-left: 20px;
 }
 
 li {
-  margin-bottom: 10px;
   color: var(--text-color);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
+  list-style: none;
+  margin-bottom: 10px;
 }
