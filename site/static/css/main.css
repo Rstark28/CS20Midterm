@@ -22,7 +22,7 @@ html,
 body {
   background-color: var(--background-color);
   line-height: 1.6;
-  font-family: "TAN Meringue", sans-serif;
+  font-family: "Anonymous Pro", monospace;
 }
 
 /* Navbar */
@@ -34,48 +34,7 @@ body {
   margin: 20px auto;
   background-color: var(--nav-bar-color);
   border-radius: 10px;
-}
-
-.logo {
-  flex: 1;
-}
-
-.logo img {
-  height: 2.4rem;
-  width: auto;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  flex: 3;
-  justify-content: space-around;
-  gap: 20px;
-}
-
-.nav-links li {
-  padding: 1rem 0;
-  text-align: center;
-}
-
-.nav-links a {
-  color: var(--nav-text-color);
-  text-decoration: none;
-  font-size: 1.2rem;
-}
-
-.order-link {
-  background-color: var(--secondary-color);
-  color: var(--white);
-  border: 2px solid #e07b2e;
-  padding: 10px 20px;
-  border-radius: 100px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.order-link:hover {
-  background-color: var(--white);
-  color: var(--nav-text-color);
+  position: relative;
 }
 
 .nav-toggle {
@@ -87,10 +46,74 @@ body {
   cursor: pointer;
 }
 
+/* Mobile Navbar - hidden by default */
+.nav-links {
+  display: flex;
+  list-style: none;
+  flex: 3;
+  justify-content: space-around;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.nav-links li {
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.nav-links a {
+  position: relative;
+  color: var(--nav-text-color);
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+/* W3 Schools Animation */
+.reg-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: var(--nav-text-color);
+  transition: width 0.5s ease;
+}
+
+.reg-link:hover::after {
+  width: 100%;
+  left: 0;
+  background: var(--hover-color);
+}
+
+.logo {
+  flex: 1;
+}
+
+.logo img {
+  height: 2.4rem;
+  width: auto;
+}
+
+.order-link {
+  background-color: var(--secondary-color);
+  color: var(--white);
+  border: 2px solid #e17523;
+  padding: 10px 20px;
+  border-radius: 100px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.order-link:hover {
+  background-color: #e17523;
+  border-color: #ca691f;
+}
+
 /* Responsive Navbar */
 @media (max-width: 1400px) {
   .nav-links {
-    display: none;
+    display: flex;
     flex-direction: column;
     position: absolute;
     top: 80%;
@@ -98,6 +121,10 @@ body {
     width: 100%;
     background-color: var(--nav-bar-color);
     border-radius: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0;
   }
 
   .nav-toggle {
@@ -105,7 +132,8 @@ body {
   }
 
   .nav-links.active {
-    display: flex;
+    max-height: 700px;
+    padding: 10px 0;
   }
 }
 
@@ -223,6 +251,7 @@ button {
 
 button:hover {
   background-color: var(--hover-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 ol,
