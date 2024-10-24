@@ -3,27 +3,32 @@
   --secondary-color: #f28c38;
   --background-color: #f5f5dc;
   --text-color: #333;
-  --nav-bar-color: #3a5a40;
+  --nav-bar-color: var(--primary-color);
   --nav-text-color: #fff;
-  --white: #fff;
-  --hover-color: #f28c38;
+  --footer-color: var(--primary-color);
+  --footer-text-color: var(--nav-text-color);
+  --button-text-color: #fff;
+  --hover-color: var(--secondary-color);
 }
 
 /* General Styling */
-body,
-html {
-  background-color: var(--background-color);
-  line-height: 1.6;
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
 }
 
+html,
+body {
+  background-color: var(--background-color);
+  line-height: 1.6;
+  font-family: "TAN Meringue", sans-serif;
+}
+
+/* Navbar */
 .navbar {
   display: flex;
   align-items: center;
-  position: relative;
   padding: 20px 40px;
   width: 80%;
   margin: 20px auto;
@@ -35,20 +40,22 @@ html {
   flex: 1;
 }
 
+.logo img {
+  height: 2.4rem;
+  width: auto;
+}
+
 .nav-links {
-  list-style: none;
   display: flex;
-  margin: 0;
-  padding: 0;
-  gap: 20px;
+  list-style: none;
   flex: 3;
   justify-content: space-around;
+  gap: 20px;
 }
 
 .nav-links li {
-  text-align: center;
-  margin: 0;
   padding: 1rem 0;
+  text-align: center;
 }
 
 .nav-links a {
@@ -57,16 +64,16 @@ html {
   font-size: 1.2rem;
 }
 
-.nav-links li a.order-link {
+.order-link {
   background-color: var(--secondary-color);
   color: var(--white);
-  border: 2px solid #e07b2e; /* Slightly darker shade of secondary color */
+  border: 2px solid #e07b2e;
   padding: 10px 20px;
   border-radius: 100px;
   transition: background-color 0.3s, color 0.3s;
 }
 
-.nav-links li a.order-link:hover {
+.order-link:hover {
   background-color: var(--white);
   color: var(--nav-text-color);
 }
@@ -80,8 +87,8 @@ html {
   cursor: pointer;
 }
 
-/* Responsive Styles */
-@media (max-width: 1000px) {
+/* Responsive Navbar */
+@media (max-width: 1400px) {
   .nav-links {
     display: none;
     flex-direction: column;
@@ -93,16 +100,6 @@ html {
     border-radius: 10px;
   }
 
-  .nav-links li {
-    text-align: center;
-    margin: 0;
-    padding: 1rem 0;
-  }
-
-  .nav-links a {
-    font-size: 1.2rem;
-  }
-
   .nav-toggle {
     display: block;
   }
@@ -112,7 +109,7 @@ html {
   }
 }
 
-/* Main Section Styling */
+/* Main Section */
 main {
   background-color: var(--background-color);
   padding: 20px 40px;
@@ -122,7 +119,6 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Section Titles */
 h1,
 h2,
 h3 {
@@ -134,56 +130,90 @@ h3 {
   padding-bottom: 10px;
 }
 
-a {
-  text-decoration: none;
-}
-
-/* Responsive Design for Titles */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-  }
 
+  h1,
   h2 {
     font-size: 2rem;
   }
 }
 
-/* Footer Styling */
+/* Footer */
 footer {
-  background-color: var(--primary-color);
+  background-color: var(--footer-color);
   color: var(--white);
   text-align: center;
-  padding: 20px 40px;
-  border-radius: 10px;
+  padding: 40px 20px;
+  border-radius: 15px;
   width: 80%;
-  margin: 20px auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 40px auto;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.footer-logo {
+  height: 3rem;
+  margin: 0 auto 20px;
+  display: block;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .footer-text {
-  color: var(--background-color);
-  font-weight: 800;
-  margin: 20px 0 15px;
-  font-size: 30px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 10px 0 30px;
+  color: var(--footer-text-color);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .icons-footer {
   display: flex;
   justify-content: center;
-  font-size: 25px;
-  color: var(--background-color);
   gap: 30px;
+  margin-bottom: 20px;
+}
+
+.icons-footer a {
+  color: var(--footer-text-color);
+  font-size: 2rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.icons-footer a:hover {
+  color: var(--hover-color);
+  transform: scale(1.2);
 }
 
 footer p {
   font-size: 1rem;
+  color: var(--footer-text-color);
+  padding-top: 20px;
 }
 
-/* Button Styling */
+@media (max-width: 768px) {
+  footer {
+    width: 95%;
+    padding: 20px 10px;
+  }
+
+  .icons-footer {
+    gap: 20px;
+    font-size: 1.8rem;
+  }
+
+  .footer-logo {
+    height: 2.5rem;
+  }
+
+  .footer-text {
+    font-size: 1.3rem;
+  }
+}
+
+/* Buttons and Lists */
 button {
   background-color: var(--primary-color);
-  color: var(--white);
+  color: var(--button-text-color);
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -195,14 +225,10 @@ button:hover {
   background-color: var(--hover-color);
 }
 
-/* List Styling */
-ol {
+ol,
+li {
   list-style-type: none;
   margin-left: 20px;
-}
-
-li {
   color: var(--text-color);
-  list-style: none;
   margin-bottom: 10px;
 }
