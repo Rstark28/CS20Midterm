@@ -135,6 +135,10 @@ body {
     max-height: 700px;
     padding: 10px 0;
   }
+    .logo img {
+      height: 1.8rem;
+    }
+
 }
 
 /* Main Section */
