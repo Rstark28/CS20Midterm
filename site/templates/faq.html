@@ -33,53 +33,6 @@
         background-color: #f5f5dc;
       }
 
-      .banner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-family: "Montserrat", sans-serif;
-        background-color: #3a5a40;
-        width: 100%;
-        height: 70px;
-        padding: 0;
-        margin-bottom: 0px;
-      }
-
-      .banner-title {
-        color: rgb(113, 120, 103);
-        position: relative;
-        text-decoration: none;
-      }
-
-      .banner-title img {
-        width: 150px;
-        height: auto;
-      }
-
-      .banner-links {
-        display: flex;
-        gap: 60px;
-      }
-
-      .banner-links a {
-        font-size: 1em;
-        color: #f7f4ed;
-        font-weight: 500;
-        text-decoration: none;
-      }
-
-      .banner-links a:hover {
-        color: orange;
-      }
-
-      .right {
-        margin-right: 200px;
-      }
-
-      .left {
-        margin-left: 200px;
-      }
-
       .intro {
         display: flex;
         justify-content: space-between;
@@ -88,6 +41,8 @@
         width: 100%;
         height: auto;
         flex-wrap: wrap;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       h1 {
@@ -240,69 +195,179 @@
         font-size: 16px;
       }
 
-      /* Footer CSS */
-      .footer_div {
+      /* Footer */
+
+      footer {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        height: 150px;
         width: 100%;
-        background-color: #3a5a40;
+        background-color: #3a5a40;;
+        text-align: center;
       }
 
-      .footer_text {
-        color: rgb(255, 255, 255);
-        font-weight: 800;
+      .footer-logo {
+        height: 3rem;
         margin-top: 20px;
-        margin-bottom: 15px;
-        font-size: 30px;
+        display: block;
+        filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
       }
 
-      .icons_footer {
+      .footer-text {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 10px 0 30px;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .icons-footer {
         display: flex;
-        gap: 10px;
         justify-content: center;
-        font-size: 25px;
-        color: rgb(255, 255, 255);
         gap: 30px;
+        margin-top: 20px;
       }
 
-      .copywrite_text {
-        color: rgb(255, 255, 255);
+      .icons-footer a {
+        color: #fff;
+        font-size: 2rem;
+        transition: color 0.3s ease, transform 0.3s ease;
       }
+
+      .icons-footer a:hover {
+        color: #f28c38;
+        transform: scale(1.2);
+      }
+
+      footer p {
+        font-size: 1rem;
+        color: #fff;
+      }
+
+      /* Navbar */
+
+      .navbar {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-top: 0px;
+        background-color: #3a5a40;
+        position: relative;
+        margin: 0;
+      }
+
+      .nav-toggle {
+        display: none;
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Mobile Navbar - hidden by default */
+      .nav-links {
+        display: flex;
+        list-style: none;
+        flex: 3;
+        justify-content: space-around;
+        gap: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-links li {
+        padding: 1rem 0;
+        text-align: center;
+      }
+
+      .nav-links a {
+        position: relative;
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.2rem;
+      }
+
+      /* W3 Schools Animation */
+      .reg-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 3px;
+        display: block;
+        margin-top: 5px;
+        right: 0;
+        background: #fff;
+        transition: width 0.5s ease;
+      }
+
+      .reg-link:hover::after {
+        width: 100%;
+        left: 0;
+        background: #f28c38;
+      }
+
+      .logo {
+        flex: 1;
+      }
+
+      .logo img {
+        height: 2rem;
+        width: auto;
+        margin-left: 40px;
+      }
+
+      .order-link {
+        background-color: #f28c38;
+        color: rgb(255, 255, 255);
+        border: 2px solid #e17523;
+        padding: 10px 20px;
+        border-radius: 100px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .order-link:hover {
+        background-color: #e17523;
+        border-color: #ca691f;
+      }
+
+      .extra {
+        height: 40px;
+      }
+
+      /* Responsive Navbar */
+      @media (max-width: 1400px) {
+        .nav-links {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 80%;
+          left: 0;
+          width: 100%;
+          background-color: #3a5a40;
+          border-radius: 10px;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.4s ease;
+          padding: 0;
+        }
+
+        .nav-toggle {
+          display: block;
+        }
+
+        .nav-links.active {
+          max-height: 700px;
+          padding: 10px 0;
+        }
+        .logo img {
+          height: 1.8rem;
+        }
+      }
+
 
       @media (max-width: 768px) {
-        .banner-links a {
-          font-size: 9px;
-          color: #f7f4ed;
-          white-space: nowrap;
-          padding: 0px;
-        }
-
-        .banner-links {
-          gap: 6px;
-        }
-
-        .banner-title img {
-          width: 100px;
-          height: auto;
-        }
-
-        .right {
-          margin-left: 0px;
-          margin-right: 5px;
-          margin-top: 0px;
-          margin-bottom: 0px;
-        }
-
-        .left {
-          margin-left: 5px;
-          margin-right: 0px;
-          margin-top: 0px;
-          margin-bottom: 0px;
-        }
-
         .intro {
           flex-direction: column;
           align-items: start;
@@ -367,36 +432,6 @@
       }
 
       @media (min-width: 480px) and (max-width: 900px) {
-        .banner-links a {
-          font-size: 11px;
-          color: #f7f4ed;
-          white-space: nowrap;
-          padding: 0px;
-        }
-
-        .banner-links {
-          gap: 14px;
-        }
-
-        .banner-title img {
-          width: 100px;
-          height: auto;
-        }
-
-        .right {
-          margin-left: 0px;
-          margin-right: 15px;
-          margin-top: 0px;
-          margin-bottom: 0px;
-        }
-
-        .left {
-          margin-left: 15px;
-          margin-right: 0px;
-          margin-top: 0px;
-          margin-bottom: 0px;
-        }
-
         .intro {
           flex-direction: column;
           align-items: start;
@@ -455,36 +490,41 @@
           margin-top: 0px;
           margin-right: 0px;
           margin-bottom: 0px;
-          margin-left: 10px;        }
+          margin-left: 10px;
+        }
 
         #storeLocal {
           font-size: 12px;
         }
       }
-
-
-
-
     </style>
   </head>
 
   <body>
-    <div class="banner">
-      <div class="banner-links left">
-        <a href="about.html">About Us</a>
-        <a href="contact.html">Contact Us</a>
-        <a href="events.html">Events</a>
-      </div>
-      <a class="banner-title" href="./index.html">
-        <img src="../static/images/tertiarylogo50kb.png" alt="Store Logo" />
-      </a>
-
-      <div class="banner-links right">
-        <a href="order.html">Order Now</a>
-        <a href="faq.html">FAQ</a>
-        <a href="locations.html">Locations</a>
-      </div>
-    </div>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <a href="index.html"
+            ><img
+              class="logo-image"
+              src="../static/images/secondarylogo50kb.svg"
+              alt="Logo"
+          /></a>
+        </div>
+        <ul class="nav-links">
+          <li><a class="reg-link" href="index.html">HOME</a></li>
+          <li><a class="reg-link" href="about.html">ABOUT</a></li>
+          <li><a class="reg-link" href="services.html">SERVICES</a></li>
+          <li><a class="reg-link" href="locations.html">LOCATIONS</a></li>
+          <li><a class="reg-link" href="faq.html">FAQ</a></li>
+          <li><a class="reg-link" href="contact.html">CONTACT</a></li>
+          <li><a class="order-link" href="order.html">ORDER</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="toggle navigation">
+          &#9776;
+        </button>
+      </nav>
+    </header>
 
     <div class="intro">
       <div class="intro-text">
@@ -785,18 +825,30 @@
       </div>
     </div>
 
-    <div class="footer_div">
-      <p class="footer_text">Borcelle Floral Studio</p>
-      <div class="icons_footer">
-        <i class="fab fa-instagram"></i>
-        <i class="fab fa-snapchat"></i>
-        <i class="fab fa-twitter"></i>
-        <i class="fab fa-facebook"></i>
+    <footer>
+      <img
+        class="footer-logo"
+        src="../static/images/tertiarylogo50kb.svg"
+        alt="Logo"
+      />
+      <div class="icons-footer">
+        <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://snapchat.com" target="_blank" aria-label="Snapchat">
+          <i class="fab fa-snapchat"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
       </div>
-      <p class="copywrite_text">
-        &copy; 2024 Borcelle Floral Studio. All rights reserved.
-      </p>
-    </div>
+      <p>&copy; 2024 Borcelle Floral Studio. All rights reserved.</p>
+    </footer>
+
+    <!-- <div class="extra"></div> -->
 
     <script>
       $(document).ready(function () {

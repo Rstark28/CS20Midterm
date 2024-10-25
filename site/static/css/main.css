@@ -22,7 +22,8 @@ html,
 body {
   background-color: var(--background-color);
   line-height: 1.6;
-  font-family: "Anonymous Pro", monospace;
+  /* font-family: "Anonymous Pro", monospace; */
+  font-family: "Montserrat", sans-serif;
 }
 
 /* Navbar */
