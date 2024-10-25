@@ -203,7 +203,7 @@
         align-items: center;
         flex-direction: column;
         width: 100%;
-        background-color: #3a5a40;;
+        background-color: #3a5a40;
         text-align: center;
       }
 
@@ -332,10 +332,6 @@
         border-color: #ca691f;
       }
 
-      .extra {
-        height: 40px;
-      }
-
       /* Responsive Navbar */
       @media (max-width: 1400px) {
         .nav-links {
@@ -362,10 +358,9 @@
           padding: 10px 0;
         }
         .logo img {
-          height: 1.8rem;
+          height: 1rem;
         }
       }
-
 
       @media (max-width: 768px) {
         .intro {
@@ -581,7 +576,7 @@
             What are your store hours? <i class="fas fa-angle-down"></i>
           </button>
           <div class="question_answer">
-            <p>We are open Monday to Saturday from 9 AM to 6 PM.</p>
+            <p>We are open Monday to Friday from 9 AM to  6 PM. Saturday hours vary by locatioon.</p>
           </div>
         </div>
 
@@ -848,8 +843,6 @@
       <p>&copy; 2024 Borcelle Floral Studio. All rights reserved.</p>
     </footer>
 
-    <!-- <div class="extra"></div> -->
-
     <script>
       $(document).ready(function () {
         $(".question_button").click(function () {
@@ -1069,6 +1062,14 @@
             }
           });
       }
+    </script>
+    <script>
+      const navToggle = document.querySelector(".nav-toggle");
+      const navLinks = document.querySelector(".nav-links");
+
+      navToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
     </script>
   </body>
 </html>

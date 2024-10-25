@@ -41,3 +41,7 @@
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+.phone-number {
+    color: rgb(0, 0, 0);
+}
