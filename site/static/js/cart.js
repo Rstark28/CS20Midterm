@@ -100,11 +100,11 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
     orderForm.addEventListener("submit", (event) => {
-      event.preventDefault(); // Prevent default form submission
+      event.preventDefault();
       alert("Order placed successfully!");
       cart.length = 0; // Clear the cart
-      displayCart(); // Update the cart display
-      orderForm.innerHTML = ""; // Clear the form after submission
+      displayCart();
+      orderForm.innerHTML = "";
       orderSection.style.display = "none"; // Hide the order form
     });
   }
