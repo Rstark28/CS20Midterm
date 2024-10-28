@@ -261,7 +261,5 @@ button:hover {
 ol,
 li {
   list-style-type: none;
-  margin-left: 20px;
   color: var(--text-color);
-  margin-bottom: 10px;
 }
