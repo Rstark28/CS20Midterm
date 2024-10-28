@@ -3,34 +3,40 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Import link for font Font Awesome CDN so as to be able to utilize their entire collection of logos -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     />
 
+    <!-- Import statment for JQuery -->
     <script
       src="https://code.jquery.com/jquery-3.7.1.js"
       integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
       crossorigin="anonymous"
     ></script>
+
+    <!-- Import statement/API key for Google Maps API. This API is used to calculate distances between user inputted addresses and
+     store locations. The API is also utilized to show the defined areas in which the business delivers to on an embedded map-->
+    <!-- Note: Although the API key is shown, it has been restricted for only the currrent website, so it cannot be utilized
+      anywhere else -->
     <script
       async
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvLKwH00PTeL3Lq01dniKydfM4gGkZAhE&callback=initMap&libraries=maps,marker&v=beta"
     ></script>
     <style type="text/css">
-      body,
-      html {
-        margin: 0px;
-        padding: 0px;
-        width: 100%;
-        height: 100%;
+      /* General Styling */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
         background-color: #f5f5dc;
+        line-height: 1.6;
+        font-family: "Anonymous Pro", monospace;
       }
 
       .intro {
@@ -38,11 +44,12 @@
         justify-content: space-between;
         align-items: center;
         background-color: rgb(242, 220, 180);
-        width: 100%;
+        width: 80%;
         height: auto;
         flex-wrap: wrap;
         margin-left: auto;
         margin-right: auto;
+        border-radius: 15px;
       }
 
       h1 {
@@ -54,7 +61,7 @@
       .intro-text {
         flex: 1;
         flex-direction: column;
-        font-size: 18px;
+        font-size: 14px;
         color: rgb(91, 87, 87);
         line-height: 1.5;
         margin-left: 75px;
@@ -142,7 +149,7 @@
       .question_button,
       .question_answer ul,
       .question_answer li {
-        font-family: "Montserrat", sans-serif;
+        font-family: "Anonymous Pro", monospace;
       }
 
       .address-container {
@@ -153,7 +160,7 @@
 
       .address-container p {
         margin-right: 10px;
-        font-family: "Montserrat", sans-serif;
+        font-family: "Anonymous Pro", monospace;
         font-size: 18px;
         color: #5b5757;
       }
@@ -165,18 +172,18 @@
         font-size: 16px;
         width: 250px;
         margin-right: 10px;
-        font-family: "Montserrat", sans-serif;
+        font-family: "Anonymous Pro", monospace;
       }
 
       button#getEstimate {
-        padding: 10px 15px;
+        padding: 8px 12px;
         background-color: #3a5a40;
         color: rgb(255, 255, 255);
         border: none;
         border-radius: 5px;
-        font-size: 16px;
+        font-size: 14px;
         cursor: pointer;
-        font-family: "Montserrat", sans-serif;
+        font-family: "Anonymous Pro", monospace;
       }
 
       button#getEstimate:hover {
@@ -185,14 +192,14 @@
 
       #storeLocationSelector {
         margin-right: 20px;
-        margin-left: 10px;
+        margin-left: 2px;
         padding: 6px 15px;
         border-radius: 5px;
         background-color: #3a5a40;
         color: rgb(255, 255, 255);
-        font-family: "Montserrat", sans-serif;
+        font-family: "Anonymous Pro", monospace;
         text-align: center;
-        font-size: 16px;
+        font-size: 14px;
       }
 
       a {
@@ -200,20 +207,20 @@
       }
 
       /* Footer */
-
       footer {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
         background-color: #3a5a40;
+        color: rgb(255, 255, 255);
         text-align: center;
+        padding: 40px 20px;
+        border-radius: 15px;
+        width: 80%;
+        margin: 40px auto;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
       }
 
       .footer-logo {
         height: 3rem;
-        margin-top: 20px;
+        margin: 0 auto 20px;
         display: block;
         filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
       }
@@ -231,7 +238,7 @@
         display: flex;
         justify-content: center;
         gap: 30px;
-        margin-top: 20px;
+        margin-bottom: 20px;
       }
 
       .icons-footer a {
@@ -248,18 +255,22 @@
       footer p {
         font-size: 1rem;
         color: #fff;
+        padding-top: 20px;
       }
 
       /* Navbar */
-
       .navbar {
         display: flex;
         align-items: center;
-        width: 100%;
-        margin-top: 0px;
-        background-color: #3a5a40;
+        padding: 20px 40px;
+        width: 80%;
+        margin: 20px auto;
+        background-color :#3a5a40;
+        border-radius: 10px;
         position: relative;
-        margin: 0;
+        height: 112px;
+        z-index: 10;
+
       }
 
       .nav-toggle {
@@ -270,7 +281,6 @@
         font-size: 1.5rem;
         cursor: pointer;
       }
-
       /* Mobile Navbar - hidden by default */
       .nav-links {
         display: flex;
@@ -309,7 +319,7 @@
       .reg-link:hover::after {
         width: 100%;
         left: 0;
-        background: #f28c38;
+        background: #f28c38;;
       }
 
       .logo {
@@ -317,13 +327,12 @@
       }
 
       .logo img {
-        height: 2rem;
+        height: 2.4rem;
         width: auto;
-        margin-left: 40px;
       }
 
       .order-link {
-        background-color: #f28c38;
+        background-color: #f28c38;;
         color: rgb(255, 255, 255);
         border: 2px solid #e17523;
         padding: 10px 20px;
@@ -334,6 +343,10 @@
       .order-link:hover {
         background-color: #e17523;
         border-color: #ca691f;
+      }
+
+      .extra {
+        height: 1px;
       }
 
       /* Responsive Navbar */
@@ -365,7 +378,7 @@
           height: 1rem;
         }
       }
-
+      /* Responsive Page For Mobile */
       @media (max-width: 768px) {
         .intro {
           flex-direction: column;
@@ -381,7 +394,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          font-size: 14px;
+          font-size: 10px;
           text-align: center;
           margin-left: auto;
           margin: auto;
@@ -405,36 +418,43 @@
 
         button#getEstimate {
           padding: 5px 5px;
-          font-size: 10px;
+          font-size: 8px;
           margin: 0px;
         }
 
         input#userAddress {
           width: 50%;
-          font-size: 10px;
+          font-size: 8px;
           margin-top: 5px;
           margin-right: 0px;
         }
 
         #storeLocationSelector {
           padding: 0;
-          font-size: 10px;
-          margin-left: 3px;
+          font-size: 8px;
+          margin-left: 1px;
           margin-right: 0px;
           margin-top: 0px;
           margin-bottom: 0px;
         }
 
         #storeLocal {
-          font-size: 10px;
+          font-size: 8px;
         }
       }
 
+      /* Responsive Page For Laptops/Tablets */
       @media (min-width: 480px) and (max-width: 900px) {
+
+        h1 {
+          font-size: 23px;
+        }
         .intro {
           flex-direction: column;
           align-items: start;
           height: 60%;
+          font-size: 14px;
+          padding: 10px;
         }
 
         .flower_banner {
@@ -445,7 +465,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          font-size: 17px;
+          font-size: 12px;
           text-align: center;
           margin-left: auto;
           margin: auto;
@@ -468,28 +488,28 @@
         }
 
         button#getEstimate {
-          padding: 3px 3px;
-          font-size: 12px;
+          padding: 3px 7px;
+          font-size: 10px;
           margin-top: 0px;
           margin-right: 0px;
           margin-bottom: 0px;
-          margin-left: 15px;
+          margin-left: 10px;
         }
 
         input#userAddress {
-          width: 45%;
-          font-size: 12px;
+          width: 59%;
+          font-size: 10px;
           margin-top: 5px;
           margin-right: 0px;
         }
 
         #storeLocationSelector {
           padding: 0;
-          font-size: 12px;
+          font-size: 10px;
           margin-top: 0px;
           margin-right: 0px;
           margin-bottom: 0px;
-          margin-left: 10px;
+          margin-left: 0px;
         }
 
         #storeLocal {
@@ -507,6 +527,7 @@
             ><img
               class="logo-image"
               src="../static/images/secondarylogo50kb.svg"
+              ;
               alt="Logo"
           /></a>
         </div>
@@ -524,7 +545,9 @@
         </button>
       </nav>
     </header>
-
+    <!-- Code for the div holding the introduction information for the
+     FAQ page. Tells the current user what the goal of the business is
+     and reminds them why they were on the website in the first place -->
     <div class="intro">
       <div class="intro-text">
         <h1>Frequently Asked Questions</h1>
@@ -548,6 +571,9 @@
       />
     </div>
 
+    <!-- Container that holds all of the questions that will be
+       shown on the FAQ page. Each question belongs to a unique section
+       and each question has its own answer -->
     <div class="questions_container">
       <div class="next_section">
         <h2 class="section_title">General</h2>
@@ -571,6 +597,12 @@
             <p>
               If you are unsure if we deliver to your area, please contact us!
             </p>
+            <!-- Holds the google map that utilizes the Google Maps API
+             to demonstrate the specific areas in which the business delivers
+             to in and around Boston. The Google Maps API allows you to
+             upload specific coordinates that can then be connected through a
+             polygon method which outlines the specific borders for each
+             area.-->
             <div id="map"></div>
           </div>
         </div>
@@ -580,7 +612,10 @@
             What are your store hours? <i class="fas fa-angle-down"></i>
           </button>
           <div class="question_answer">
-            <p>We are open Monday to Friday from 9 AM to  6 PM. Saturday hours vary by locatioon.</p>
+            <p>
+              We are open Monday to Friday from 9 AM to 6 PM. Saturday hours
+              vary by locatioon.
+            </p>
           </div>
         </div>
 
@@ -612,7 +647,10 @@
             <i class="fas fa-angle-down"></i>
           </button>
           <div class="question_answer">
-            <p>Your satisfaction is our priority. If you're unhappy with your order, please contact us within 24 hours, and we'll make it right.</p>
+            <p>
+              Your satisfaction is our priority. If you're unhappy with your
+              order, please contact us within 24 hours, and we'll make it right.
+            </p>
           </div>
         </div>
 
@@ -623,32 +661,23 @@
           </button>
           <div class="question_answer">
             <label id="storeLocal">Choose a store location:</label>
+            <!-- The logngitude and lattitude for each available store
+             are stored within the drop down menu that a user can then
+             choose from. These coordinates are then stored and then compared
+             to the address given by the user using the Google Maps API. The
+             API then generates the time it will take from the store location
+             to the user specific address. The generated time is then
+             shown on the screen to the user-->
             <select id="storeLocationSelector">
               <option value="42.36628064018915,-71.06780678241522">
                 Boston
               </option>
               <option value="42.36628064018915,-71.06780678241522">
-                Medford
-              </option>
-              <option value="42.36628064018915,-71.06780678241522">
                 Cambridge
               </option>
               <option value="42.36628064018915,-71.06780678241522">
-                Somerville
+                Waltham
               </option>
-              <option value="42.36628064018915,-71.06780678241522">
-                Everett
-              </option>
-              <option value="42.36628064018915,-71.06780678241522">
-                Malden
-              </option>
-              <option value="42.36628064018915,-71.06780678241522">
-                Revere
-              </option>
-              <option value="42.36628064018915,-71.06780678241522">
-                Chelsea
-              </option>
-              x
             </select>
             <input
               type="text"
@@ -824,6 +853,8 @@
       </div>
     </div>
 
+    <!-- HTML code for the footer section of the page. The social media
+     logos used were generated through the font awesome CDN-->
     <footer>
       <img
         class="footer-logo"
@@ -847,7 +878,18 @@
       <p>&copy; 2024 Borcelle Floral Studio. All rights reserved.</p>
     </footer>
 
+    <div class="extra"></div>
+
     <script>
+      // each time a button holding a question is clicked, all of the
+      // previous answers that were visible, collapse. After this collapsing takes
+      // place, the question button that was clicked has the font awesome arrow logo
+      // go from pointing up to pointing down. The question that was currently being
+      // looked at it, loses te "current_question" designation.
+      // If the corresponding answer section for the question button that was clicked is not visible
+      // the answer div slides down usign JQuery and the button that was just clicked
+      // is now marked as the "current_question". The font awesome arrow is then
+      // changed from pointing up to pointing down.
       $(document).ready(function () {
         $(".question_button").click(function () {
           $(".question_answer").slideUp(200);
@@ -868,6 +910,10 @@
       });
     </script>
     <script>
+      // Note: In order to utilize the Google Maps API properly, instructions
+      // and tutorials from the following website were followed (). This
+      // website provided information for how to store coordinates and how to produces
+      // the actual shapes that outline the different areas the business delivers to
       function initMap() {
         const foundStoreCoordinates = document
           .getElementById("storeLocationSelector")
@@ -877,12 +923,16 @@
           lng: parseFloat(foundStoreCoordinates[1]),
         };
 
+        // the map is centered around the current store location (right now
+        // it is set to the boston location)
         const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 11,
+          zoom: 11, // attribute that allows you to zoom in or out from the map
           center: storeLocation,
-          mapTypeId: "terrain",
+          mapTypeId: "terrain", // attribute that shows the type of map being shown
         });
 
+        // Each area consists of four different coordinates which are
+        // then connected so that the borders of each area are clearly defined
         const bostonCoords = [
           { lat: 42.22944032591052, lng: -71.12717524108194 },
           { lat: 42.283735587035416, lng: -71.1907521930559 },
@@ -939,6 +989,12 @@
           { lat: 42.384664673458744, lng: -71.02735782024251 },
           { lat: 42.40076560305704, lng: -71.0102775138331 },
         ];
+
+        // each defined area is created with the help of the Google Maps API
+        // Polygon method which creates a path that connects all of the given
+        // coordinates for a specific area, and then shades the defined area
+        // with the chosen color. This method also proivdes you with attributes
+        // that change the final areas opacit and weight of the defined borders.
         const bostonPolygon = new google.maps.Polygon({
           paths: bostonCoords,
           strokeColor: "#FF0000",
@@ -1011,6 +1067,8 @@
           fillOpacity: 0.35,
         });
 
+        // each defined area (Google Maps Polygon) is then pushed
+        // onto the map so the user can actually see it on the front-end
         bostonPolygon.setMap(map);
         medfordPolygon.setMap(map);
         cambridgePolygon.setMap(map);
@@ -1020,26 +1078,50 @@
         reverePolygon.setMap(map);
         chelseaPolygon.setMap(map);
 
+        // Note: In order to utilize the Google Maps API properly, so as
+        // to properly calculate distances, instructions
+        // and tutorials from the following website were followed ().
+
+        // function for determining the distance between the chosen store
+        // location decided by the user and the address the user inputted.
+        // the distance is then calculated by Google Maps API service
         document
           .getElementById("getEstimate")
           .addEventListener("click", function () {
+            // the address the user put in is first grabbed
             const userAddress = document.getElementById("userAddress").value;
+            // if the user actually inputted an address a Google Maps API
+            // Geocoder object is created. The inputted address is then stored
+            // by the Geocoder object
             if (userAddress) {
               const geocoder = new google.maps.Geocoder();
               geocoder.geocode(
                 { address: userAddress },
                 function (results, status) {
+                  // if there was no issue in the Google Maps API connection
+                  // the coordinates of the user location are then transformed
+                  // so the distance can be officially calculated
                   if (status === "OK") {
                     const userLocation = results[0].geometry.location;
 
+                    // a Google Maps API DistanceMatrixService object is
+                    // created that then uses a built in getDistanceMatrix
+                    // method which takes the location of the user (or the
+                    // address they plugged in) and finds the distance between
+                    // that and the location of the selected store.
                     const service = new google.maps.DistanceMatrixService();
                     service.getDistanceMatrix(
                       {
                         origins: [storeLocation],
                         destinations: [userLocation],
+                        // this mode determines what type of transportation
+                        // is being utilized to get from point A to point B
                         travelMode: "DRIVING",
                       },
                       function (response, status) {
+                        // if there was no issue in calculating the distance
+                        // the actual time is returned from the API as a string
+                        // which is then shown to the user on the front-end
                         if (status === "OK") {
                           const travelTime =
                             response.rows[0].elements[0].duration.text;
@@ -1054,12 +1136,16 @@
                         }
                       }
                     );
+                    // if the inputted address does not exist or could not
+                    // be found, an error message is printed
                   } else {
                     document.getElementById("deliveryEstimate").innerText =
                       "Address not found. Please try again!";
                   }
                 }
               );
+              // if the user doesn't input an address and tries to find
+              // a distance, an error message is printed
             } else {
               document.getElementById("deliveryEstimate").innerText =
                 "Please enter a valid address.";

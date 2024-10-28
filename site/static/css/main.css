@@ -29,7 +29,6 @@ body {
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: center;
   padding: 20px 40px;
   width: 80%;
   margin: 20px auto;
@@ -51,7 +50,7 @@ body {
 .nav-links {
   display: flex;
   list-style: none;
-  flex: 4;
+  flex: 3;
   justify-content: space-around;
   gap: 20px;
   transition: all 0.3s ease;
@@ -80,14 +79,12 @@ body {
   right: 0;
   background: var(--nav-text-color);
   transition: width 0.5s ease;
-  border-radius: 10px;
 }
 
 .reg-link:hover::after {
   width: 100%;
   left: 0;
   background: var(--hover-color);
-  border-radius: 10px;
 }
 
 .logo {
@@ -95,9 +92,8 @@ body {
 }
 
 .logo img {
-  height: 2.0rem;
+  height: 2.4rem;
   width: auto;
-  max-width: 100%;
 }
 
 .order-link {
@@ -136,9 +132,13 @@ body {
   }
 
   .nav-links.active {
-    max-height: 800px;
+    max-height: 700px;
     padding: 10px 0;
   }
+    .logo img {
+      height: 1.0rem;
+    }
+
 }
 
 /* Main Section */
@@ -251,7 +251,6 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 1rem;
-  margin: 5px;
 }
 
 button:hover {
@@ -262,6 +261,7 @@ button:hover {
 ol,
 li {
   list-style-type: none;
-  margin: 10px 20px;
+  margin-left: 20px;
   color: var(--text-color);
+  margin-bottom: 10px;
 }
