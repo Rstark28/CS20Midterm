@@ -7,35 +7,33 @@
     <title>Document</title>
     <link rel="stylesheet" href="../static/css/main.css">
     <link rel="stylesheet" href="../static/css/locations.css">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        h3 {font-size: 20px;}
-        #logo_image {
-            display:block;
-            margin:auto;
-        }
-        .centered {
-            text-align:center;
-        }
-        .action {
-            display: block;
-            border: 1px solid;
-            border-radius: 20px;
-            max-width: 150px;
-            margin:auto;
+        h3 {
             font-size: 20px;
-            text-align: center;
-            text-decoration: none;
-            background-color: var(--primary-color);
-            color: rgb(255, 255, 255);
         }
+
+        #logo_image {
+            display: block;
+            margin: auto;
+        }
+
+        .centered {
+            text-align: center;
+        }
+
+        button {
+            display: block;
+            max-width: 150px;
+            margin: auto;
+            font-size: 20px;
+        }
+
         .action:hover {
             background-color: var(--hover-color);
             transition: 0.5s;
         }
+
         .testimonial {
             max-width: 65%;
             margin: auto;
@@ -49,13 +47,9 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <a href="index.html"
-                  ><img
-                    class="logo-image"
-                    src="../static/images/secondarylogo50kb.svg"
-                    alt="Logo"
-                /></a>
-              </div>
+                <a href="index.html"><img class="logo-image" src="../static/images/secondarylogo50kb.svg"
+                        alt="Logo" /></a>
+            </div>
             <ul class="nav-links">
                 <li><a class="reg-link" href="index.html">HOME</a></li>
                 <li><a class="reg-link" href="about.html">ABOUT</a></li>
@@ -73,79 +67,88 @@
 
     <main>
         <section>
-            <img id = "logo_image" src="../static/images/primarylogo50k.png" alt="Garden Glory" />
-            <p class = "centered">
+            <img id="logo_image" src="../static/images/primarylogo50k.png" alt="Garden Glory" />
+            <p class="centered">
                 <i>“Bringing Blooms to Life”</i>
                 </br>
                 <i>“Fresh Flowers, Expertly Crafted, Delivered with Love”</i>
             </p>
             <p>
-                Welcome to <strong>Borcelle Flower Studio</strong>, your go-to destination for exquisite floral arrangements and gifts for every occasion. Whether you're celebrating a special moment, sending a heartfelt message, or simply brightening your home, our handpicked blooms are arranged with care by our expert florists. 
+                Welcome to <strong>Borcelle Flower Studio</strong>, your go-to destination for exquisite floral
+                arrangements and gifts for every occasion. Whether you're celebrating a special moment, sending a
+                heartfelt message, or simply brightening your home, our handpicked blooms are arranged with care by our
+                expert florists.
             </p>
 
             <h3>Seasonal Picks</h3>
             <p>
-                Discover the beauty of the season with our <strong>Fall Harvest Collection</strong>, featuring warm hues of sunflowers, dahlias, and chrysanthemums. Perfect for Thanksgiving centerpieces, cozy home decor, or as a thoughtful gift for loved ones. Check out our featured seasonal arrangements to bring a touch of autumn into your home.
+                Discover the beauty of the season with our <strong>Fall Harvest Collection</strong>, featuring warm hues
+                of sunflowers, dahlias, and chrysanthemums. Perfect for Thanksgiving centerpieces, cozy home decor, or
+                as a thoughtful gift for loved ones. Check out our featured seasonal arrangements to bring a touch of
+                autumn into your home.
                 </br>
-                <p><i>This is a temporary image: real one will be of flowers and centered</i></p>
-                <img src="../static/images/primarylogo50k.png" alt="Garden Glory" />
-                <a class = "action" href="order.html">Shop Now</a>
+            <p><i>This is a temporary image: real one will be of flowers and centered</i></p>
+            <img src="../static/images/primarylogo50k.png" alt="Garden Glory" />
+            <button class="action" onclick="location.href='order.html'">Shop Now</button>
             </p>
 
             <h3>Best Sellers</h3>
             <p>
-                Our customers love these stunning arrangements! From timeless roses to elegant orchids, our best sellers include the <strong>Classic Romance</strong> bouquet, a mix of red roses and lilies, and the <strong>Sunny Delight</strong> arrangement, perfect for birthdays or just because. These floral favorites are designed to leave a lasting impression.
+                Our customers love these stunning arrangements! From timeless roses to elegant orchids, our best sellers
+                include the <strong>Classic Romance</strong> bouquet, a mix of red roses and lilies, and the
+                <strong>Sunny Delight</strong> arrangement, perfect for birthdays or just because. These floral
+                favorites are designed to leave a lasting impression.
                 </br>
-                <p><i>This is a temporary image: real one will be of flowers and centered</i></p>
-                <img src="../static/images/primarylogo50k.png" alt="Garden Glory" />
-                <a class = "action" href="order.html">Shop Now</a>
+            <p><i>This is a temporary image: real one will be of flowers and centered</i></p>
+            <img src="../static/images/primarylogo50k.png" alt="Garden Glory" />
+            <button onclick="location.href='order.html'">Shop Now</button>
             </p>
             <h3>Customer Testimonials</h3>
 
-            <div class = "testimonial">
-                “Borcelle Flower Studio never disappoints! The arrangements are always fresh, vibrant, and beautifully crafted. I’ve used them for birthdays, anniversaries, and even last-minute gifts—always a hit!”
+            <div class="testimonial">
+                “Borcelle Flower Studio never disappoints! The arrangements are always fresh, vibrant, and beautifully
+                crafted. I’ve used them for birthdays, anniversaries, and even last-minute gifts—always a hit!”
                 </br>
                 <strong>– Sarah G.</strong>
             </div>
-            
-            <div class = "testimonial">
-                “The team at Borcelle Flower Studio goes above and beyond. I ordered an arrangement for my wedding, and they brought my vision to life perfectly. The flowers were stunning, and the attention to detail was incredible.”
+
+            <div class="testimonial">
+                “The team at Borcelle Flower Studio goes above and beyond. I ordered an arrangement for my wedding, and
+                they brought my vision to life perfectly. The flowers were stunning, and the attention to detail was
+                incredible.”
                 </br>
                 <strong>- Emily S.</strong>
             </div>
-            
-            <div class = "testimonial">
-                “I’ve been a loyal customer for years. Whether it’s a custom bouquet or one of their best sellers, the flowers are always top quality. The delivery is fast, and the service is amazing!
+
+            <div class="testimonial">
+                “I’ve been a loyal customer for years. Whether it’s a custom bouquet or one of their best sellers, the
+                flowers are always top quality. The delivery is fast, and the service is amazing!
                 </br>
                 <strong>– James M.</strong>
             </div>
 
-            
+
         </section>
     </main>
 
     <footer>
-        <img
-          class="footer-logo"
-          src="../static/images/tertiarylogo50kb.svg"
-          alt="Logo"
-        />
+        <img class="footer-logo" src="../static/images/tertiarylogo50kb.svg" alt="Logo" />
         <div class="icons-footer">
-          <a href="https://instagram.com" target="_blank" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="https://snapchat.com" target="_blank" aria-label="Snapchat">
-            <i class="fab fa-snapchat"></i>
-          </a>
-          <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="https://facebook.com" target="_blank" aria-label="Facebook">
-            <i class="fab fa-facebook"></i>
-          </a>
+            <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://snapchat.com" target="_blank" aria-label="Snapchat">
+                <i class="fab fa-snapchat"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
         </div>
         <p>&copy; 2024 Borcelle Floral Studio. All rights reserved.</p>
-      </footer>
+    </footer>
 
 </body>
 

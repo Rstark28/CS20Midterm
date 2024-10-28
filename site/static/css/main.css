@@ -23,6 +23,7 @@ body {
   background-color: var(--background-color);
   line-height: 1.6;
   font-family: "Anonymous Pro", monospace;
+  color: var(--text-color);
 }
 
 /* Navbar */
@@ -160,6 +161,11 @@ h3 {
   text-transform: uppercase;
   border-bottom: 2px solid var(--secondary-color);
   padding-bottom: 10px;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
 }
 
 @media (max-width: 768px) {
