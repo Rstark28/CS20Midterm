@@ -3,12 +3,12 @@
   --secondary-color: #f28c38;
   --background-color: #f5f5dc;
   --text-color: #333;
-  --nav-bar-color: var(--primary-color);
+  --nav-bar-color: #3a5a40;
   --nav-text-color: #fff;
-  --footer-color: var(--primary-color);
-  --footer-text-color: var(--nav-text-color);
+  --footer-color: #3a5a40;
+  --footer-text-color: #fff;
   --button-text-color: #fff;
-  --hover-color: var(--secondary-color);
+  --hover-color: #f28c38;
 }
 
 /* General Styling */
