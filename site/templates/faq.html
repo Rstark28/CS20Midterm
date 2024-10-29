@@ -1,1173 +1,1156 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Import link for font Font Awesome CDN so as to be able to utilize their entire collection of logos -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    />
 
-    <!-- Import statment for JQuery -->
-    <script
-      src="https://code.jquery.com/jquery-3.7.1.js"
-      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-      crossorigin="anonymous"
-    ></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Import link for font Font Awesome CDN so as to be able to utilize their entire collection of logos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 
-    <!-- Import statement/API key for Google Maps API. This API is used to calculate distances between user inputted addresses and
+  <!-- Import statment for JQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+
+  <!-- Import statement/API key for Google Maps API. This API is used to calculate distances between user inputted addresses and
      store locations. The API is also utilized to show the defined areas in which the business delivers to on an embedded map-->
-    <!-- Note: Although the API key is shown, it has been restricted for only the currrent website, so it cannot be utilized
+  <!-- Note: Although the API key is shown, it has been restricted for only the currrent website, so it cannot be utilized
       anywhere else -->
-    <script
-      async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvLKwH00PTeL3Lq01dniKydfM4gGkZAhE&callback=initMap&libraries=maps,marker&v=beta"
-    ></script>
-    <style type="text/css">
-      /* General Styling */
-      * {
-        margin: 0;
+  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvLKwH00PTeL3Lq01dniKydfM4gGkZAhE&callback=initMap&libraries=maps,marker&v=beta"></script>
+  <style type="text/css">
+    /* General Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      background-color: #f5f5dc;
+      line-height: 1.6;
+      font-family: "Anonymous Pro", monospace;
+    }
+
+    .intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f8d7a1;
+      width: 80%;
+      height: auto;
+      flex-wrap: wrap;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 15px;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-weight: 300;
+      margin: 0px;
+    }
+
+    .intro-text {
+      flex: 1;
+      flex-direction: column;
+      font-size: 14px;
+      color: rgb(91, 87, 87);
+      line-height: 1.5;
+      margin-left: 75px;
+    }
+
+    .flower_banner {
+      height: 300px;
+      width: auto;
+      mix-blend-mode: multiply;
+    }
+
+    .questions_container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    .next_question {
+      margin-bottom: 0px;
+    }
+
+    .question_button {
+      width: 100%;
+      padding: 15px;
+      text-align: left;
+      background-color: #f5f5dc;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: 400;
+      border-top: 1px solid #3a5a40;
+      height: 75px;
+      position: relative;
+      color: #f28c38;
+    }
+
+    .current_question_button {
+      border: 1px solid #3a5a40;
+      margin-bottom: 10px;
+    }
+
+    .question_answer {
+      display: none;
+      padding: 0 20px;
+      color: rgb(91, 87, 87);
+      font-size: 17px;
+    }
+
+    .question_button:hover {
+      background-color: #d6ffb0;
+    }
+
+    .next_section {
+      width: 60%;
+    }
+
+    .section_title {
+      color: #3a5a40;
+    }
+
+    i {
+      float: right;
+      margin-right: 2px;
+    }
+
+    #map {
+      width: auto;
+      height: auto;
+      visibility: visible !important;
+    }
+
+    #map {
+      visibility: visible !important;
+      height: 500px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 10px;
+    }
+
+    .question_answer,
+    .question_button,
+    .question_answer ul,
+    .question_answer li {
+      font-family: "Anonymous Pro", monospace;
+    }
+
+    .address-container {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .address-container p {
+      margin-right: 10px;
+      font-family: "Anonymous Pro", monospace;
+      font-size: 18px;
+      color: #5b5757;
+    }
+
+    input#userAddress {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #cccccc;
+      font-size: 16px;
+      width: 250px;
+      margin-right: 10px;
+      font-family: "Anonymous Pro", monospace;
+    }
+
+    button#getEstimate {
+      padding: 8px 12px;
+      background-color: #3a5a40;
+      color: rgb(255, 255, 255);
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: "Anonymous Pro", monospace;
+    }
+
+    button#getEstimate:hover {
+      background-color: #2d4831;
+    }
+
+    #storeLocationSelector {
+      margin-right: 20px;
+      margin-left: 2px;
+      padding: 6px 15px;
+      border-radius: 5px;
+      background-color: #3a5a40;
+      color: rgb(255, 255, 255);
+      font-family: "Anonymous Pro", monospace;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    a {
+      color: black;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #3a5a40;
+      color: rgb(255, 255, 255);
+      text-align: center;
+      padding: 40px 20px;
+      border-radius: 15px;
+      width: 80%;
+      margin: 40px auto;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .footer-logo {
+      height: 3rem;
+      margin: 0 auto 20px;
+      display: block;
+      filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
+    }
+
+    .footer-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 10px 0 30px;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .icons-footer {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+
+    .icons-footer a {
+      color: #fff;
+      font-size: 2rem;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .icons-footer a:hover {
+      color: #f28c38;
+      transform: scale(1.2);
+    }
+
+    footer p {
+      font-size: 1rem;
+      color: #fff;
+      padding-top: 20px;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      padding: 20px 40px;
+      width: 80%;
+      margin: 20px auto;
+      background-color: #3a5a40;
+      border-radius: 10px;
+      position: relative;
+      z-index: 10;
+
+    }
+
+    .nav-toggle {
+      display: none;
+      background-color: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Mobile Navbar - hidden by default */
+    .nav-links {
+      display: flex;
+      list-style: none;
+      flex: 3;
+      justify-content: space-around;
+      gap: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links li {
+      padding: 1rem 0;
+      text-align: center;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+
+    /* W3 Schools Animation */
+    .reg-link::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 3px;
+      display: block;
+      margin-top: 5px;
+      right: 0;
+      background: #fff;
+      transition: width 0.5s ease;
+    }
+
+    .reg-link:hover::after {
+      width: 100%;
+      left: 0;
+      background: #f28c38;
+      ;
+    }
+
+    .logo {
+      flex: 1;
+    }
+
+    .logo img {
+      height: 2.4rem;
+      width: auto;
+    }
+
+    .order-link {
+      background-color: #f28c38;
+      ;
+      color: rgb(255, 255, 255);
+      border: 2px solid #e17523;
+      padding: 10px 20px;
+      border-radius: 100px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .order-link:hover {
+      background-color: #e17523;
+      border-color: #ca691f;
+    }
+
+    .extra {
+      height: 1px;
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 1400px) {
+      .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80%;
+        left: 0;
+        width: 100%;
+        background-color: #3a5a40;
+        border-radius: 10px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
         padding: 0;
-        box-sizing: border-box;
       }
 
-      html,
-      body {
-        background-color: #f5f5dc;
-        line-height: 1.6;
-        font-family: "Anonymous Pro", monospace;
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links.active {
+        max-height: 700px;
+        padding: 10px 0;
+      }
+
+      .logo img {
+        height: 1rem;
+      }
+    }
+
+    /* Responsive Page For Mobile */
+    @media (max-width: 768px) {
+
+      h1 {
+        font-size: 20px;
+      }
+
+      h2 {
+        font-size: 16px;
       }
 
       .intro {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #f8d7a1;
-        width: 80%;
-        height: auto;
-        flex-wrap: wrap;
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 15px;
-      }
-
-      h1 {
-        font-size: 40px;
-        font-weight: 300;
-        margin: 0px;
-      }
-
-      .intro-text {
-        flex: 1;
         flex-direction: column;
-        font-size: 14px;
-        color: rgb(91, 87, 87);
-        line-height: 1.5;
-        margin-left: 75px;
+        align-items: start;
+        height: 60%;
       }
 
       .flower_banner {
-        height: 300px;
-        width: auto;
-        mix-blend-mode: multiply;
+        display: none;
+      }
+
+      .intro-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 10px;
+        text-align: center;
+        margin-left: auto;
+        margin: auto;
       }
 
       .questions_container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 40px;
-        margin-bottom: 20px;
-      }
-
-      .next_question {
-        margin-bottom: 0px;
+        width: 100%;
       }
 
       .question_button {
-        width: 100%;
-        padding: 15px;
-        text-align: left;
-        background-color: #f5f5dc;
-        border: none;
-        font-size: 18px;
-        cursor: pointer;
-        font-weight: 400;
-        border-top: 1px solid #3a5a40;
-        height: 75px;
-        position: relative;
-        color: #f28c38;
+        font-size: 12px;
       }
 
-      .current_question_button {
-        border: 1px solid #3a5a40;
-        margin-bottom: 10px;
+      .question_button:hover {
+        background-color: transparent;
       }
 
       .question_answer {
+        font-size: 14px;
+      }
+
+      button#getEstimate {
+        padding: 5px 5px;
+        font-size: 8px;
+        margin: 0px;
+      }
+
+      input#userAddress {
+        width: 55%;
+        font-size: 8px;
+        margin-top: 5px;
+        margin-right: 0px;
+      }
+
+      #storeLocationSelector {
+        padding: 0;
+        font-size: 8px;
+        margin-left: 1px;
+        margin-right: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+
+      #storeLocal {
+        font-size: 8px;
+      }
+    }
+
+    /* Responsive Page For Laptops/Tablets */
+    @media (min-width: 480px) and (max-width: 900px) {
+
+      h1 {
+        font-size: 23px;
+      }
+
+      .intro {
+        flex-direction: column;
+        align-items: start;
+        height: 60%;
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .flower_banner {
         display: none;
-        padding: 0 20px;
-        color: rgb(91, 87, 87);
-        font-size: 17px;
+      }
+
+      .intro-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+        text-align: center;
+        margin-left: auto;
+        margin: auto;
+      }
+
+      .questions_container {
+        width: 100%;
+      }
+
+      .question_button {
+        font-size: 15px;
       }
 
       .question_button:hover {
         background-color: #d6ffb0;
       }
 
-      .next_section {
-        width: 60%;
-      }
-
-      .section_title {
-        color: #3a5a40;
-      }
-
-      i {
-        float: right;
-        margin-right: 2px;
-      }
-
-      #map {
-        width: auto;
-        height: auto;
-        visibility: visible !important;
-      }
-
-      #map {
-        visibility: visible !important;
-        height: 500px;
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 10px;
-      }
-
-      .question_answer,
-      .question_button,
-      .question_answer ul,
-      .question_answer li {
-        font-family: "Anonymous Pro", monospace;
-      }
-
-      .address-container {
-        display: flex;
-        align-items: center;
-        margin-top: 20px;
-      }
-
-      .address-container p {
-        margin-right: 10px;
-        font-family: "Anonymous Pro", monospace;
-        font-size: 18px;
-        color: #5b5757;
-      }
-
-      input#userAddress {
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #cccccc;
-        font-size: 16px;
-        width: 250px;
-        margin-right: 10px;
-        font-family: "Anonymous Pro", monospace;
+      .question_answer {
+        font-size: 13px;
       }
 
       button#getEstimate {
-        padding: 8px 12px;
-        background-color: #3a5a40;
-        color: rgb(255, 255, 255);
-        border: none;
-        border-radius: 5px;
-        font-size: 14px;
-        cursor: pointer;
-        font-family: "Anonymous Pro", monospace;
+        padding: 3px 7px;
+        font-size: 8px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 10px;
       }
 
-      button#getEstimate:hover {
-        background-color: #2d4831;
+      input#userAddress {
+        width: 63%;
+        font-size: 8px;
+        margin-top: 5px;
+        margin-right: 0px;
       }
 
       #storeLocationSelector {
-        margin-right: 20px;
-        margin-left: 2px;
-        padding: 6px 15px;
-        border-radius: 5px;
-        background-color: #3a5a40;
-        color: rgb(255, 255, 255);
-        font-family: "Anonymous Pro", monospace;
-        text-align: center;
-        font-size: 14px;
+        padding: 0;
+        font-size: 8px;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
       }
 
-      a {
-        color: black;
+      #storeLocal {
+        font-size: 12px;
       }
+    }
+  </style>
+</head>
 
-      /* Footer */
-      footer {
-        background-color: #3a5a40;
-        color: rgb(255, 255, 255);
-        text-align: center;
-        padding: 40px 20px;
-        border-radius: 15px;
-        width: 80%;
-        margin: 40px auto;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      .footer-logo {
-        height: 3rem;
-        margin: 0 auto 20px;
-        display: block;
-        filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
-      }
-
-      .footer-text {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin: 10px 0 30px;
-        color: #fff;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-      }
-
-      .icons-footer {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin-bottom: 20px;
-      }
-
-      .icons-footer a {
-        color: #fff;
-        font-size: 2rem;
-        transition: color 0.3s ease, transform 0.3s ease;
-      }
-
-      .icons-footer a:hover {
-        color: #f28c38;
-        transform: scale(1.2);
-      }
-
-      footer p {
-        font-size: 1rem;
-        color: #fff;
-        padding-top: 20px;
-      }
-
-      /* Navbar */
-      .navbar {
-        display: flex;
-        align-items: center;
-        padding: 20px 40px;
-        width: 80%;
-        margin: 20px auto;
-        background-color :#3a5a40;
-        border-radius: 10px;
-        position: relative;
-        z-index: 10;
-
-      }
-
-      .nav-toggle {
-        display: none;
-        background-color: transparent;
-        border: none;
-        color: #fff;
-        font-size: 1.5rem;
-        cursor: pointer;
-      }
-      /* Mobile Navbar - hidden by default */
-      .nav-links {
-        display: flex;
-        list-style: none;
-        flex: 3;
-        justify-content: space-around;
-        gap: 20px;
-        transition: all 0.3s ease;
-      }
-
-      .nav-links li {
-        padding: 1rem 0;
-        text-align: center;
-      }
-
-      .nav-links a {
-        position: relative;
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.2rem;
-      }
-
-      /* W3 Schools Animation */
-      .reg-link::after {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 3px;
-        display: block;
-        margin-top: 5px;
-        right: 0;
-        background: #fff;
-        transition: width 0.5s ease;
-      }
-
-      .reg-link:hover::after {
-        width: 100%;
-        left: 0;
-        background: #f28c38;;
-      }
-
-      .logo {
-        flex: 1;
-      }
-
-      .logo img {
-        height: 2.4rem;
-        width: auto;
-      }
-
-      .order-link {
-        background-color: #f28c38;;
-        color: rgb(255, 255, 255);
-        border: 2px solid #e17523;
-        padding: 10px 20px;
-        border-radius: 100px;
-        transition: background-color 0.3s, color 0.3s;
-      }
-
-      .order-link:hover {
-        background-color: #e17523;
-        border-color: #ca691f;
-      }
-
-      .extra {
-        height: 1px;
-      }
-
-      /* Responsive Navbar */
-      @media (max-width: 1400px) {
-        .nav-links {
-          display: flex;
-          flex-direction: column;
-          position: absolute;
-          top: 80%;
-          left: 0;
-          width: 100%;
-          background-color: #3a5a40;
-          border-radius: 10px;
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.4s ease;
-          padding: 0;
-        }
-
-        .nav-toggle {
-          display: block;
-        }
-
-        .nav-links.active {
-          max-height: 700px;
-          padding: 10px 0;
-        }
-        .logo img {
-          height: 1rem;
-        }
-      }
-      /* Responsive Page For Mobile */
-      @media (max-width: 768px) {
-
-        h1 {
-          font-size: 20px;
-        }
-
-        h2 {
-          font-size: 16px;
-        }
-
-        .intro {
-          flex-direction: column;
-          align-items: start;
-          height: 60%;
-        }
-
-        .flower_banner {
-          display: none;
-        }
-
-        .intro-text {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 10px;
-          text-align: center;
-          margin-left: auto;
-          margin: auto;
-        }
-
-        .questions_container {
-          width: 100%;
-        }
-
-        .question_button {
-          font-size: 12px;
-        }
-
-        .question_button:hover {
-          background-color: transparent;
-        }
-
-        .question_answer {
-          font-size: 14px;
-        }
-
-        button#getEstimate {
-          padding: 5px 5px;
-          font-size: 8px;
-          margin: 0px;
-        }
-
-        input#userAddress {
-          width: 55%;
-          font-size: 8px;
-          margin-top: 5px;
-          margin-right: 0px;
-        }
-
-        #storeLocationSelector {
-          padding: 0;
-          font-size: 8px;
-          margin-left: 1px;
-          margin-right: 0px;
-          margin-top: 0px;
-          margin-bottom: 0px;
-        }
-
-        #storeLocal {
-          font-size: 8px;
-        }
-      }
-
-      /* Responsive Page For Laptops/Tablets */
-      @media (min-width: 480px) and (max-width: 900px) {
-
-        h1 {
-          font-size: 23px;
-        }
-        .intro {
-          flex-direction: column;
-          align-items: start;
-          height: 60%;
-          font-size: 14px;
-          padding: 10px;
-        }
-
-        .flower_banner {
-          display: none;
-        }
-
-        .intro-text {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 12px;
-          text-align: center;
-          margin-left: auto;
-          margin: auto;
-        }
-
-        .questions_container {
-          width: 100%;
-        }
-
-        .question_button {
-          font-size: 15px;
-        }
-
-        .question_button:hover {
-          background-color: #d6ffb0;
-        }
-
-        .question_answer {
-          font-size: 13px;
-        }
-
-        button#getEstimate {
-          padding: 3px 7px;
-          font-size: 8px;
-          margin-top: 0px;
-          margin-right: 0px;
-          margin-bottom: 0px;
-          margin-left: 10px;
-        }
-
-        input#userAddress {
-          width: 63%;
-          font-size: 8px;
-          margin-top: 5px;
-          margin-right: 0px;
-        }
-
-        #storeLocationSelector {
-          padding: 0;
-          font-size: 8px;
-          margin-top: 0px;
-          margin-right: 0px;
-          margin-bottom: 0px;
-          margin-left: 0px;
-        }
-
-        #storeLocal {
-          font-size: 12px;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <header>
-      <nav class="navbar">
-        <div class="logo">
-          <a href="index.html"
-            ><img
-              class="logo-image"
-              src="../static/images/secondarylogo50kb.svg"
-              ;
-              alt="Logo"
-          /></a>
-        </div>
-        <ul class="nav-links">
-          <li><a class="reg-link" href="index.html">HOME</a></li>
-          <li><a class="reg-link" href="about.html">ABOUT</a></li>
-          <li><a class="reg-link" href="events.html">EVENTS</a></li>
-          <li><a class="reg-link" href="locations.html">LOCATIONS</a></li>
-          <li><a class="reg-link" href="faq.html">FAQ</a></li>
-          <li><a class="reg-link" href="contact.html">CONTACT</a></li>
-          <li><a class="order-link" href="order.html">ORDER</a></li>
-        </ul>
-        <button class="nav-toggle" aria-label="toggle navigation">
-          &#9776;
-        </button>
-      </nav>
-    </header>
-    <!-- Code for the div holding the introduction information for the
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html"><img class="logo-image" src="../static/images/secondarylogo50kb.svg" ; alt="Logo" /></a>
+      </div>
+      <ul class="nav-links">
+        <li><a class="reg-link" href="index.html">HOME</a></li>
+        <li><a class="reg-link" href="about.html">ABOUT</a></li>
+        <li><a class="reg-link" href="events.html">EVENTS</a></li>
+        <li><a class="reg-link" href="locations.html">LOCATIONS</a></li>
+        <li><a class="reg-link" href="faq.html">FAQ</a></li>
+        <li><a class="reg-link" href="contact.html">CONTACT</a></li>
+        <li><a class="order-link" href="order.html">ORDER</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="toggle navigation">
+        &#9776;
+      </button>
+    </nav>
+    <script src="../static/js/navbar.js"></script>
+  </header>
+  <!-- Code for the div holding the introduction information for the
      FAQ page. Tells the current user what the goal of the business is
      and reminds them why they were on the website in the first place -->
-    <div class="intro">
-      <div class="intro-text">
-        <h1>Frequently Asked Questions</h1>
-        <p>
-          We believe that beauty and nature should
-          always be in harmony. That's why we offer fresh, handpicked flowers
-          that not only brighten your space but also bring the soothing essence
-          of nature indoors. Our arrangements are crafted with care, using
-          sustainably sourced blooms that fill your home with vibrant colors and
-          natural fragrances. Each bouquet is thoughtfully designed to reflect
-          the season and celebrate life's special moments, making it the perfect
-          choice for any occasion. Whether you're gifting a loved one or
-          treating yourself, our flowers are guaranteed to leave a lasting
-          impression.
-        </p>
-      </div>
-      <img
-        class="flower_banner"
-        src="../static/images/flower_banner_faq.jpg"
-        alt="bouqet of flowers"
-      />
+  <div class="intro">
+    <div class="intro-text">
+      <h1>Frequently Asked Questions</h1>
+      <p>
+        We believe that beauty and nature should
+        always be in harmony. That's why we offer fresh, handpicked flowers
+        that not only brighten your space but also bring the soothing essence
+        of nature indoors. Our arrangements are crafted with care, using
+        sustainably sourced blooms that fill your home with vibrant colors and
+        natural fragrances. Each bouquet is thoughtfully designed to reflect
+        the season and celebrate life's special moments, making it the perfect
+        choice for any occasion. Whether you're gifting a loved one or
+        treating yourself, our flowers are guaranteed to leave a lasting
+        impression.
+      </p>
     </div>
+    <img class="flower_banner" src="../static/images/flower_banner_faq.jpg" alt="bouqet of flowers" />
+  </div>
 
-    <!-- Container that holds all of the questions that will be
+  <!-- Container that holds all of the questions that will be
        shown on the FAQ page. Each question belongs to a unique section
        and each question has its own answer -->
-    <div class="questions_container">
-      <div class="next_section">
-        <h2 class="section_title">General</h2>
+  <div class="questions_container">
+    <div class="next_section">
+      <h2 class="section_title">General</h2>
 
-        <div class="next_question">
-          <button class="question_button">
-            What areas do you deliver to? <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>We deliver to:</p>
-            <ul>
-              <li>Boston</li>
-              <li>Medford</li>
-              <li>Cambridge</li>
-              <li>Somerville</li>
-              <li>Everett</li>
-              <li>Malden</li>
-              <li>Revere</li>
-              <li>Chelsea</li>
-            </ul>
-            <p>
-              If you are unsure if we deliver to your area, please contact us!
-            </p>
-            <!-- Holds the google map that utilizes the Google Maps API
+      <div class="next_question">
+        <button class="question_button">
+          What areas do you deliver to? <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>We deliver to:</p>
+          <ul>
+            <li>Boston</li>
+            <li>Medford</li>
+            <li>Cambridge</li>
+            <li>Somerville</li>
+            <li>Everett</li>
+            <li>Malden</li>
+            <li>Revere</li>
+            <li>Chelsea</li>
+          </ul>
+          <p>
+            If you are unsure if we deliver to your area, please contact us!
+          </p>
+          <!-- Holds the google map that utilizes the Google Maps API
              to demonstrate the specific areas in which the business delivers
              to in and around Boston. The Google Maps API allows you to
              upload specific coordinates that can then be connected through a
              polygon method which outlines the specific borders for each
              area.-->
-            <div id="map"></div>
-          </div>
+          <div id="map"></div>
         </div>
+      </div>
 
-        <div class="next_question">
-          <button class="question_button">
-            What are your store hours? <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>
-              We are open Monday to Friday from 9 AM to 6 PM. Saturday hours
-              vary by locatioon.
-            </p>
-          </div>
+      <div class="next_question">
+        <button class="question_button">
+          What are your store hours? <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>
+            We are open Monday to Friday from 9 AM to 6 PM. Saturday hours
+            vary by locatioon.
+          </p>
         </div>
+      </div>
 
-        <div class="next_question">
-          <button class="question_button">
-            How can I contact customer support?
-            <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>
-              You can reach us via our Contact Us page or by phone at
-              <a href="tel:6176275000">(617) 627-5000</a>
-            </p>
-          </div>
+      <div class="next_question">
+        <button class="question_button">
+          How can I contact customer support?
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>
+            You can reach us via our Contact Us page or by phone at
+            <a href="tel:6176275000">(617) 627-5000</a>
+          </p>
         </div>
+      </div>
 
-        <div class="next_question">
-          <button class="question_button">
-            Do you offer same-day delivery? <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>Yes, for orders placed before 12 PM.</p>
-          </div>
+      <div class="next_question">
+        <button class="question_button">
+          Do you offer same-day delivery? <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>Yes, for orders placed before 12 PM.</p>
         </div>
+      </div>
 
-        <div class="next_question">
-          <button class="question_button">
-            What if I am not satisfied with my order?
-            <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>
-              Your satisfaction is our priority. If you're unhappy with your
-              order, please contact us within 24 hours, and we'll make it right.
-            </p>
-          </div>
+      <div class="next_question">
+        <button class="question_button">
+          What if I am not satisfied with my order?
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>
+            Your satisfaction is our priority. If you're unhappy with your
+            order, please contact us within 24 hours, and we'll make it right.
+          </p>
         </div>
+      </div>
 
-        <div class="next_question">
-          <button class="question_button">
-            Enter your address for delivery estimate
-            <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <label id="storeLocal">Choose a store location:</label>
-            <!-- The logngitude and lattitude for each available store
+      <div class="next_question">
+        <button class="question_button">
+          Enter your address for delivery estimate
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <label id="storeLocal">Choose a store location:</label>
+          <!-- The logngitude and lattitude for each available store
              are stored within the drop down menu that a user can then
              choose from. These coordinates are then stored and then compared
              to the address given by the user using the Google Maps API. The
              API then generates the time it will take from the store location
              to the user specific address. The generated time is then
              shown on the screen to the user-->
-            <select id="storeLocationSelector">
-              <option value="42.36628064018915,-71.06780678241522">
-                Boston
-              </option>
-              <option value="42.36640948455762,-71.10369947095289">
-                Cambridge
-              </option>
-              <option value="42.377531262824746,-71.19552878989603">
-                Waltham
-              </option>
-            </select>
-            <input
-              type="text"
-              id="userAddress"
-              placeholder="Enter your address"
-            />
-            <button id="getEstimate">Get Estimate</button>
-            <p id="deliveryEstimate"></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="next_section">
-        <h2 class="section_title">Ordering & Payment</h2>
-
-        <div class="next_question">
-          <button class="question_button">
-            How do I place an order online? <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>
-              Simply browse our collection, add your favorite arrangement to the
-              cart, and proceed to checkout. You can also order by phone!
-            </p>
-          </div>
-        </div>
-
-        <div class="next_question">
-          <button class="question_button">
-            What payment methods do you accept?
-            <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>We accept all major credit cards and PayPal.</p>
-          </div>
-        </div>
-
-        <div class="next_question">
-          <button class="question_button">
-            Can I change or cancel my order after placing it?
-            <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>Yes, within 1 hour of placing the order.</p>
-          </div>
-        </div>
-
-        <div class="next_question">
-          <button class="question_button">
-            Is there a minimum order amount for delivery?
-          </button>
-          <div class="question_answer">
-            <p>Yes, the minimum order is $25 for delivery.</p>
-          </div>
-        </div>
-
-        <div class="next_question">
-          <button class="question_button">
-            Can I order flowers for delivery outside your delivery zones?
-            <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>Currently, we only deliver to our specified areas.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="next_section">
-        <h2 class="section_title">Delivery & Shipping</h2>
-
-        <div class="next_question">
-          <button class="question_button">
-            How much is the delivery fee? <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>Delivery fees start at $5, depending on location.</p>
-          </div>
-        </div>
-
-        <div class="next_question">
-          <button class="question_button">
-            What time will my flowers be delivered?
-            <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>We deliver between 9 AM and 6 PM.</p>
-          </div>
-        </div>
-
-        <div class="next_question">
-          <button class="question_button">
-            Can I track my delivery? <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>
-              Yes, you’ll receive a tracking link once your order is dispatched.
-            </p>
-          </div>
-        </div>
-
-        <div class="next_question">
-          <button class="question_button">
-            What happens if the recipient is not home?
-            <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>We’ll leave the flowers in a safe spot or with a neighbor.</p>
-          </div>
-        </div>
-
-        <div class="next_question">
-          <button class="question_button">
-            Do you deliver on holidays? <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>Yes, we deliver on most holidays.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="next_section">
-        <h2 class="section_title">Special Requests</h2>
-
-        <div class="next_question">
-          <button class="question_button">
-            Can I customize a flower arrangement?
-            <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>Yes. We offer custom flower arrangement options.</p>
-          </div>
-        </div>
-
-        <div class="next_question">
-          <button class="question_button">
-            Do you offer flowers for weddings or large events?
-            <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>Yes, contact us for a consultation.</p>
-          </div>
-        </div>
-
-        <div class="next_question">
-          <button class="question_button">
-            Can I include a personal message with my flowers?
-            <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>Yes, give us a call to speak with someone about adding your message.</p>
-          </div>
-        </div>
-
-        <div class="next_question">
-          <button class="question_button">
-            Can I request specific flowers or colors in my arrangement?
-            <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>Yes, you can leave special requests when ordering.</p>
-          </div>
-        </div>
-
-        <div class="next_question">
-          <button class="question_button">
-            Do you provide flower arrangements for businesses or corporate
-            events? <i class="fas fa-angle-down"></i>
-          </button>
-          <div class="question_answer">
-            <p>Yes, we offer custom solutions for businesses.</p>
-          </div>
+          <select id="storeLocationSelector">
+            <option value="42.36628064018915,-71.06780678241522">
+              Boston
+            </option>
+            <option value="42.36640948455762,-71.10369947095289">
+              Cambridge
+            </option>
+            <option value="42.377531262824746,-71.19552878989603">
+              Waltham
+            </option>
+          </select>
+          <input type="text" id="userAddress" placeholder="Enter your address" />
+          <button id="getEstimate">Get Estimate</button>
+          <p id="deliveryEstimate"></p>
         </div>
       </div>
     </div>
 
-    <!-- HTML code for the footer section of the page. The social media
-     logos used were generated through the font awesome CDN-->
-    <footer>
-      <img
-        class="footer-logo"
-        src="../static/images/tertiarylogo50kb.svg"
-        alt="Logo"
-      />
-      <div class="icons-footer">
-        <a href="https://instagram.com" target="_blank" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://snapchat.com" target="_blank" aria-label="Snapchat">
-          <i class="fab fa-snapchat"></i>
-        </a>
-        <a href="https://twitter.com" target="_blank" aria-label="Twitter">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="https://facebook.com" target="_blank" aria-label="Facebook">
-          <i class="fab fa-facebook"></i>
-        </a>
+    <div class="next_section">
+      <h2 class="section_title">Ordering & Payment</h2>
+
+      <div class="next_question">
+        <button class="question_button">
+          How do I place an order online? <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>
+            Simply browse our collection, add your favorite arrangement to the
+            cart, and proceed to checkout. You can also order by phone!
+          </p>
+        </div>
       </div>
-      <p>&copy; 2024 Borcelle Floral Studio. All rights reserved.</p>
-    </footer>
 
-    <div class="extra"></div>
+      <div class="next_question">
+        <button class="question_button">
+          What payment methods do you accept?
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>We accept all major credit cards and PayPal.</p>
+        </div>
+      </div>
 
-    <script>
-      // each time a button holding a question is clicked, all of the
-      // previous answers that were visible, collapse. After this collapsing takes
-      // place, the question button that was clicked has the font awesome arrow logo
-      // go from pointing up to pointing down. The question that was currently being
-      // looked at it, loses te "current_question" designation.
-      // If the corresponding answer section for the question button that was clicked is not visible
-      // the answer div slides down usign JQuery and the button that was just clicked
-      // is now marked as the "current_question". The font awesome arrow is then
-      // changed from pointing up to pointing down.
-      $(document).ready(function () {
-        $(".question_button").click(function () {
-          $(".question_answer").slideUp(200);
-          $(".current_question_button i")
-            .removeClass("fa-angle-up")
-            .addClass("fa-angle-down");
-          $(".question_button").removeClass("current_question_button");
+      <div class="next_question">
+        <button class="question_button">
+          Can I change or cancel my order after placing it?
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>Yes, within 1 hour of placing the order.</p>
+        </div>
+      </div>
 
-          if (!$(this).next(".question_answer").is(":visible")) {
-            $(this).next(".question_answer").slideDown(200);
-            $(this).addClass("current_question_button");
-            $(this)
-              .find("i")
-              .removeClass("fa-angle-down")
-              .addClass("fa-angle-up");
+      <div class="next_question">
+        <button class="question_button">
+          Is there a minimum order amount for delivery?
+        </button>
+        <div class="question_answer">
+          <p>Yes, the minimum order is $25 for delivery.</p>
+        </div>
+      </div>
+
+      <div class="next_question">
+        <button class="question_button">
+          Can I order flowers for delivery outside your delivery zones?
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>Currently, we only deliver to our specified areas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="next_section">
+      <h2 class="section_title">Delivery & Shipping</h2>
+
+      <div class="next_question">
+        <button class="question_button">
+          How much is the delivery fee? <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>Delivery fees start at $5, depending on location.</p>
+        </div>
+      </div>
+
+      <div class="next_question">
+        <button class="question_button">
+          What time will my flowers be delivered?
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>We deliver between 9 AM and 6 PM.</p>
+        </div>
+      </div>
+
+      <div class="next_question">
+        <button class="question_button">
+          Can I track my delivery? <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>
+            Yes, you’ll receive a tracking link once your order is dispatched.
+          </p>
+        </div>
+      </div>
+
+      <div class="next_question">
+        <button class="question_button">
+          What happens if the recipient is not home?
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>We’ll leave the flowers in a safe spot or with a neighbor.</p>
+        </div>
+      </div>
+
+      <div class="next_question">
+        <button class="question_button">
+          Do you deliver on holidays? <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>Yes, we deliver on most holidays.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="next_section">
+      <h2 class="section_title">Special Requests</h2>
+
+      <div class="next_question">
+        <button class="question_button">
+          Can I customize a flower arrangement?
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>Yes. We offer custom flower arrangement options.</p>
+        </div>
+      </div>
+
+      <div class="next_question">
+        <button class="question_button">
+          Do you offer flowers for weddings or large events?
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>Yes, contact us for a consultation.</p>
+        </div>
+      </div>
+
+      <div class="next_question">
+        <button class="question_button">
+          Can I include a personal message with my flowers?
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>Yes, give us a call to speak with someone about adding your message.</p>
+        </div>
+      </div>
+
+      <div class="next_question">
+        <button class="question_button">
+          Can I request specific flowers or colors in my arrangement?
+          <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>Yes, you can leave special requests when ordering.</p>
+        </div>
+      </div>
+
+      <div class="next_question">
+        <button class="question_button">
+          Do you provide flower arrangements for businesses or corporate
+          events? <i class="fas fa-angle-down"></i>
+        </button>
+        <div class="question_answer">
+          <p>Yes, we offer custom solutions for businesses.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HTML code for the footer section of the page. The social media
+     logos used were generated through the font awesome CDN-->
+  <footer>
+    <img class="footer-logo" src="../static/images/tertiarylogo50kb.svg" alt="Logo" />
+    <div class="icons-footer">
+      <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://snapchat.com" target="_blank" aria-label="Snapchat">
+        <i class="fab fa-snapchat"></i>
+      </a>
+      <a href="https://twitter.com" target="_blank" aria-label="Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+        <i class="fab fa-facebook"></i>
+      </a>
+    </div>
+    <p>&copy; 2024 Borcelle Floral Studio. All rights reserved.</p>
+  </footer>
+
+  <div class="extra"></div>
+
+  <script>
+    // each time a button holding a question is clicked, all of the
+    // previous answers that were visible, collapse. After this collapsing takes
+    // place, the question button that was clicked has the font awesome arrow logo
+    // go from pointing up to pointing down. The question that was currently being
+    // looked at it, loses te "current_question" designation.
+    // If the corresponding answer section for the question button that was clicked is not visible
+    // the answer div slides down usign JQuery and the button that was just clicked
+    // is now marked as the "current_question". The font awesome arrow is then
+    // changed from pointing up to pointing down.
+    $(document).ready(function () {
+      $(".question_button").click(function () {
+        $(".question_answer").slideUp(200);
+        $(".current_question_button i")
+          .removeClass("fa-angle-up")
+          .addClass("fa-angle-down");
+        $(".question_button").removeClass("current_question_button");
+
+        if (!$(this).next(".question_answer").is(":visible")) {
+          $(this).next(".question_answer").slideDown(200);
+          $(this).addClass("current_question_button");
+          $(this)
+            .find("i")
+            .removeClass("fa-angle-down")
+            .addClass("fa-angle-up");
+        }
+      });
+    });
+  </script>
+  <script>
+    // Note: In order to utilize the Google Maps API properly, instructions
+    // and tutorials from the following website were followed (). This
+    // website provided information for how to store coordinates and how to produces
+    // the actual shapes that outline the different areas the business delivers to
+    function initMap() {
+      const foundStoreCoordinates = document
+        .getElementById("storeLocationSelector")
+        .value.split(",");
+      const storeLocation = {
+        lat: parseFloat(foundStoreCoordinates[0]),
+        lng: parseFloat(foundStoreCoordinates[1]),
+      };
+
+      // the map is centered around the current store location (right now
+      // it is set to the boston location)
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 11, // attribute that allows you to zoom in or out from the map
+        center: storeLocation,
+        mapTypeId: "terrain", // attribute that shows the type of map being shown
+      });
+
+      // Each area consists of four different coordinates which are
+      // then connected so that the borders of each area are clearly defined
+      const bostonCoords = [
+        { lat: 42.22944032591052, lng: -71.12717524108194 },
+        { lat: 42.283735587035416, lng: -71.1907521930559 },
+        { lat: 42.39012187727108, lng: -71.07547530211413 },
+        { lat: 42.3906378765876, lng: -70.98744567630405 },
+      ];
+
+      const medfordCoords = [
+        { lat: 42.45350643527756, lng: -71.11922640717648 },
+        { lat: 42.435898762080484, lng: -71.14634890378638 },
+        { lat: 42.39661202607398, lng: -71.10103030185591 },
+        { lat: 42.444386531697724, lng: -71.08592410121243 },
+      ];
+
+      const cambridgeCoords = [
+        { lat: 42.369732183872436, lng: -71.06633941761274 },
+        { lat: 42.369732183872436, lng: -71.06633941761274 },
+        { lat: 42.36646927550377, lng: -71.14398035814172 },
+        { lat: 42.40425383420654, lng: -71.1343673213686 },
+      ];
+
+      const somervilleCoords = [
+        { lat: 42.40405073175339, lng: -71.13456111674874 },
+        { lat: 42.37438279884146, lng: -71.10314708585312 },
+        { lat: 42.37368530697633, lng: -71.07336383799353 },
+        { lat: 42.39935689498229, lng: -71.08666760544385 },
+        { lat: 42.41789227460707, lng: -71.12708592745639 },
+      ];
+
+      const everettCoords = [
+        { lat: 42.42422992210172, lng: -71.0284823501236 },
+        { lat: 42.38880299326876, lng: -71.0569781377011 },
+        { lat: 42.39691682886955, lng: -71.0762042123461 },
+        { lat: 42.414725554537924, lng: -71.0732001383545 },
+      ];
+
+      const maldenCoords = [
+        { lat: 42.4446549078484, lng: -71.02571755899514 },
+        { lat: 42.424130358050206, lng: -71.02820664887389 },
+        { lat: 42.41329524677292, lng: -71.07884675453768 },
+        { lat: 42.44482206813666, lng: -71.08542963081845 },
+      ];
+
+      const revereCoords = [
+        { lat: 42.39755145954689, lng: -71.01303714285282 },
+        { lat: 42.39147362224583, lng: -70.98093562225928 },
+        { lat: 42.441405648091596, lng: -70.96016459637448 },
+        { lat: 42.44976600821244, lng: -71.01852946249706 },
+      ];
+
+      const chelseaCoords = [
+        { lat: 42.41432774713589, lng: -71.03328013754025 },
+        { lat: 42.38783447430125, lng: -71.05276370314293 },
+        { lat: 42.384664673458744, lng: -71.02735782024251 },
+        { lat: 42.40076560305704, lng: -71.0102775138331 },
+      ];
+
+      // each defined area is created with the help of the Google Maps API
+      // Polygon method which creates a path that connects all of the given
+      // coordinates for a specific area, and then shades the defined area
+      // with the chosen color. This method also proivdes you with attributes
+      // that change the final areas opacit and weight of the defined borders.
+      const bostonPolygon = new google.maps.Polygon({
+        paths: bostonCoords,
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FF0000",
+        fillOpacity: 0.35,
+      });
+
+      const medfordPolygon = new google.maps.Polygon({
+        paths: medfordCoords,
+        strokeColor: "#0000FF",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#0000FF",
+        fillOpacity: 0.35,
+      });
+
+      const cambridgePolygon = new google.maps.Polygon({
+        paths: cambridgeCoords,
+        strokeColor: "#00FF00",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#00FF00",
+        fillOpacity: 0.35,
+      });
+
+      const somervillePolygon = new google.maps.Polygon({
+        paths: somervilleCoords,
+        strokeColor: "#FFFF00",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FFFF00",
+        fillOpacity: 0.35,
+      });
+
+      const everettPolygon = new google.maps.Polygon({
+        paths: everettCoords,
+        strokeColor: "#00FFFF",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#00FFFF",
+        fillOpacity: 0.35,
+      });
+
+      const maldenPolygon = new google.maps.Polygon({
+        paths: maldenCoords,
+        strokeColor: "#FFA500",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FFA500",
+        fillOpacity: 0.35,
+      });
+
+      const reverePolygon = new google.maps.Polygon({
+        paths: revereCoords,
+        strokeColor: "#FFA500",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FFA500",
+        fillOpacity: 0.35,
+      });
+
+      const chelseaPolygon = new google.maps.Polygon({
+        paths: chelseaCoords,
+        strokeColor: "#FFA500",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FFA500",
+        fillOpacity: 0.35,
+      });
+
+      // each defined area (Google Maps Polygon) is then pushed
+      // onto the map so the user can actually see it on the front-end
+      bostonPolygon.setMap(map);
+      medfordPolygon.setMap(map);
+      cambridgePolygon.setMap(map);
+      somervillePolygon.setMap(map);
+      everettPolygon.setMap(map);
+      maldenPolygon.setMap(map);
+      reverePolygon.setMap(map);
+      chelseaPolygon.setMap(map);
+
+      // Note: In order to utilize the Google Maps API properly, so as
+      // to properly calculate distances, instructions
+      // and tutorials from the following website were followed ().
+
+      // function for determining the distance between the chosen store
+      // location decided by the user and the address the user inputted.
+      // the distance is then calculated by Google Maps API service
+      document
+        .getElementById("getEstimate")
+        .addEventListener("click", function () {
+          // the address the user put in is first grabbed
+          const userAddress = document.getElementById("userAddress").value;
+          // if the user actually inputted an address a Google Maps API
+          // Geocoder object is created. The inputted address is then stored
+          // by the Geocoder object
+          if (userAddress) {
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode(
+              { address: userAddress },
+              function (results, status) {
+                // if there was no issue in the Google Maps API connection
+                // the coordinates of the user location are then transformed
+                // so the distance can be officially calculated
+                if (status === "OK") {
+                  const userLocation = results[0].geometry.location;
+
+                  // a Google Maps API DistanceMatrixService object is
+                  // created that then uses a built in getDistanceMatrix
+                  // method which takes the location of the user (or the
+                  // address they plugged in) and finds the distance between
+                  // that and the location of the selected store.
+                  const service = new google.maps.DistanceMatrixService();
+                  service.getDistanceMatrix(
+                    {
+                      origins: [storeLocation],
+                      destinations: [userLocation],
+                      // this mode determines what type of transportation
+                      // is being utilized to get from point A to point B
+                      travelMode: "DRIVING",
+                    },
+                    function (response, status) {
+                      // if there was no issue in calculating the distance
+                      // the actual time is returned from the API as a string
+                      // which is then shown to the user on the front-end
+                      if (status === "OK") {
+                        const travelTime =
+                          response.rows[0].elements[0].duration.text;
+                        document.getElementById(
+                          "deliveryEstimate"
+                        ).innerText =
+                          "Estimated Delivery Time: " + travelTime;
+                      } else {
+                        document.getElementById(
+                          "deliveryEstimate"
+                        ).innerText = "Unable to calculate delivery time.";
+                      }
+                    }
+                  );
+                  // if the inputted address does not exist or could not
+                  // be found, an error message is printed
+                } else {
+                  document.getElementById("deliveryEstimate").innerText =
+                    "Address not found. Please try again!";
+                }
+              }
+            );
+            // if the user doesn't input an address and tries to find
+            // a distance, an error message is printed
+          } else {
+            document.getElementById("deliveryEstimate").innerText =
+              "Please enter a valid address.";
           }
         });
-      });
-    </script>
-    <script>
-      // Note: In order to utilize the Google Maps API properly, instructions
-      // and tutorials from the following website were followed (). This
-      // website provided information for how to store coordinates and how to produces
-      // the actual shapes that outline the different areas the business delivers to
-      function initMap() {
-        const foundStoreCoordinates = document
-          .getElementById("storeLocationSelector")
-          .value.split(",");
-        const storeLocation = {
-          lat: parseFloat(foundStoreCoordinates[0]),
-          lng: parseFloat(foundStoreCoordinates[1]),
-        };
+    }
+  </script>
+  <script>
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelector(".nav-links");
 
-        // the map is centered around the current store location (right now
-        // it is set to the boston location)
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 11, // attribute that allows you to zoom in or out from the map
-          center: storeLocation,
-          mapTypeId: "terrain", // attribute that shows the type of map being shown
-        });
+    navToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+  </script>
+</body>
 
-        // Each area consists of four different coordinates which are
-        // then connected so that the borders of each area are clearly defined
-        const bostonCoords = [
-          { lat: 42.22944032591052, lng: -71.12717524108194 },
-          { lat: 42.283735587035416, lng: -71.1907521930559 },
-          { lat: 42.39012187727108, lng: -71.07547530211413 },
-          { lat: 42.3906378765876, lng: -70.98744567630405 },
-        ];
-
-        const medfordCoords = [
-          { lat: 42.45350643527756, lng: -71.11922640717648 },
-          { lat: 42.435898762080484, lng: -71.14634890378638 },
-          { lat: 42.39661202607398, lng: -71.10103030185591 },
-          { lat: 42.444386531697724, lng: -71.08592410121243 },
-        ];
-
-        const cambridgeCoords = [
-          { lat: 42.369732183872436, lng: -71.06633941761274 },
-          { lat: 42.369732183872436, lng: -71.06633941761274 },
-          { lat: 42.36646927550377, lng: -71.14398035814172 },
-          { lat: 42.40425383420654, lng: -71.1343673213686 },
-        ];
-
-        const somervilleCoords = [
-          { lat: 42.40405073175339, lng: -71.13456111674874 },
-          { lat: 42.37438279884146, lng: -71.10314708585312 },
-          { lat: 42.37368530697633, lng: -71.07336383799353 },
-          { lat: 42.39935689498229, lng: -71.08666760544385 },
-          { lat: 42.41789227460707, lng: -71.12708592745639 },
-        ];
-
-        const everettCoords = [
-          { lat: 42.42422992210172, lng: -71.0284823501236 },
-          { lat: 42.38880299326876, lng: -71.0569781377011 },
-          { lat: 42.39691682886955, lng: -71.0762042123461 },
-          { lat: 42.414725554537924, lng: -71.0732001383545 },
-        ];
-
-        const maldenCoords = [
-          { lat: 42.4446549078484, lng: -71.02571755899514 },
-          { lat: 42.424130358050206, lng: -71.02820664887389 },
-          { lat: 42.41329524677292, lng: -71.07884675453768 },
-          { lat: 42.44482206813666, lng: -71.08542963081845 },
-        ];
-
-        const revereCoords = [
-          { lat: 42.39755145954689, lng: -71.01303714285282 },
-          { lat: 42.39147362224583, lng: -70.98093562225928 },
-          { lat: 42.441405648091596, lng: -70.96016459637448 },
-          { lat: 42.44976600821244, lng: -71.01852946249706 },
-        ];
-
-        const chelseaCoords = [
-          { lat: 42.41432774713589, lng: -71.03328013754025 },
-          { lat: 42.38783447430125, lng: -71.05276370314293 },
-          { lat: 42.384664673458744, lng: -71.02735782024251 },
-          { lat: 42.40076560305704, lng: -71.0102775138331 },
-        ];
-
-        // each defined area is created with the help of the Google Maps API
-        // Polygon method which creates a path that connects all of the given
-        // coordinates for a specific area, and then shades the defined area
-        // with the chosen color. This method also proivdes you with attributes
-        // that change the final areas opacit and weight of the defined borders.
-        const bostonPolygon = new google.maps.Polygon({
-          paths: bostonCoords,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: "#FF0000",
-          fillOpacity: 0.35,
-        });
-
-        const medfordPolygon = new google.maps.Polygon({
-          paths: medfordCoords,
-          strokeColor: "#0000FF",
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: "#0000FF",
-          fillOpacity: 0.35,
-        });
-
-        const cambridgePolygon = new google.maps.Polygon({
-          paths: cambridgeCoords,
-          strokeColor: "#00FF00",
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: "#00FF00",
-          fillOpacity: 0.35,
-        });
-
-        const somervillePolygon = new google.maps.Polygon({
-          paths: somervilleCoords,
-          strokeColor: "#FFFF00",
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: "#FFFF00",
-          fillOpacity: 0.35,
-        });
-
-        const everettPolygon = new google.maps.Polygon({
-          paths: everettCoords,
-          strokeColor: "#00FFFF",
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: "#00FFFF",
-          fillOpacity: 0.35,
-        });
-
-        const maldenPolygon = new google.maps.Polygon({
-          paths: maldenCoords,
-          strokeColor: "#FFA500",
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: "#FFA500",
-          fillOpacity: 0.35,
-        });
-
-        const reverePolygon = new google.maps.Polygon({
-          paths: revereCoords,
-          strokeColor: "#FFA500",
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: "#FFA500",
-          fillOpacity: 0.35,
-        });
-
-        const chelseaPolygon = new google.maps.Polygon({
-          paths: chelseaCoords,
-          strokeColor: "#FFA500",
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: "#FFA500",
-          fillOpacity: 0.35,
-        });
-
-        // each defined area (Google Maps Polygon) is then pushed
-        // onto the map so the user can actually see it on the front-end
-        bostonPolygon.setMap(map);
-        medfordPolygon.setMap(map);
-        cambridgePolygon.setMap(map);
-        somervillePolygon.setMap(map);
-        everettPolygon.setMap(map);
-        maldenPolygon.setMap(map);
-        reverePolygon.setMap(map);
-        chelseaPolygon.setMap(map);
-
-        // Note: In order to utilize the Google Maps API properly, so as
-        // to properly calculate distances, instructions
-        // and tutorials from the following website were followed ().
-
-        // function for determining the distance between the chosen store
-        // location decided by the user and the address the user inputted.
-        // the distance is then calculated by Google Maps API service
-        document
-          .getElementById("getEstimate")
-          .addEventListener("click", function () {
-            // the address the user put in is first grabbed
-            const userAddress = document.getElementById("userAddress").value;
-            // if the user actually inputted an address a Google Maps API
-            // Geocoder object is created. The inputted address is then stored
-            // by the Geocoder object
-            if (userAddress) {
-              const geocoder = new google.maps.Geocoder();
-              geocoder.geocode(
-                { address: userAddress },
-                function (results, status) {
-                  // if there was no issue in the Google Maps API connection
-                  // the coordinates of the user location are then transformed
-                  // so the distance can be officially calculated
-                  if (status === "OK") {
-                    const userLocation = results[0].geometry.location;
-
-                    // a Google Maps API DistanceMatrixService object is
-                    // created that then uses a built in getDistanceMatrix
-                    // method which takes the location of the user (or the
-                    // address they plugged in) and finds the distance between
-                    // that and the location of the selected store.
-                    const service = new google.maps.DistanceMatrixService();
-                    service.getDistanceMatrix(
-                      {
-                        origins: [storeLocation],
-                        destinations: [userLocation],
-                        // this mode determines what type of transportation
-                        // is being utilized to get from point A to point B
-                        travelMode: "DRIVING",
-                      },
-                      function (response, status) {
-                        // if there was no issue in calculating the distance
-                        // the actual time is returned from the API as a string
-                        // which is then shown to the user on the front-end
-                        if (status === "OK") {
-                          const travelTime =
-                            response.rows[0].elements[0].duration.text;
-                          document.getElementById(
-                            "deliveryEstimate"
-                          ).innerText =
-                            "Estimated Delivery Time: " + travelTime;
-                        } else {
-                          document.getElementById(
-                            "deliveryEstimate"
-                          ).innerText = "Unable to calculate delivery time.";
-                        }
-                      }
-                    );
-                    // if the inputted address does not exist or could not
-                    // be found, an error message is printed
-                  } else {
-                    document.getElementById("deliveryEstimate").innerText =
-                      "Address not found. Please try again!";
-                  }
-                }
-              );
-              // if the user doesn't input an address and tries to find
-              // a distance, an error message is printed
-            } else {
-              document.getElementById("deliveryEstimate").innerText =
-                "Please enter a valid address.";
-            }
-          });
-      }
-    </script>
-    <script>
-      const navToggle = document.querySelector(".nav-toggle");
-      const navLinks = document.querySelector(".nav-links");
-
-      navToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-      });
-    </script>
-  </body>
 </html>
