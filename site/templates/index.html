@@ -29,17 +29,31 @@
             font-size: 20px;
         }
 
-        .action:hover {
-            background-color: var(--hover-color);
-            transition: 0.5s;
-        }
-
         .testimonial {
             max-width: 65%;
             margin: auto;
             text-align: center;
         }
+
     </style>
+
+    <script>
+        var slideIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("slideshow_image");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+                console.log(i);
+            }
+            slideIndex++;
+            if (slideIndex > x.length) {slideIndex = 1}
+            x[slideIndex-1].style.display = "inline-block";
+            setTimeout(carousel, 2000);
+        }
+    </script>
 </head>
 
 <body>
@@ -103,6 +117,30 @@
             <img src="../static/images/primarylogo50k.png" alt="Garden Glory" />
             <button onclick="location.href='order.html'">Shop Now</button>
             </p>
+
+            <h3>Custom Arrangements</h3>
+            <p>
+                At <strong>Borcelle Flower Studio</strong>, we believe that every special occasion deserves a unique touch.
+                Our custom arrangements are carefully designed to reflect your personal style, preferences, and the sentiment
+                you want to convey. From vibrant bouquets that make bold statements to delicate arrangements for intimate gatherings,
+                our florists work closely with you to bring your vision to life.
+            </p>
+            <p>
+                Explore our showcase of past custom creations for weddings, birthdays, anniversaries, and more. Each arrangement is one-of-a-kind, created with premium blooms, and crafted with an eye for detail. Let us help you create a floral arrangement that’s as unique as your occasion!
+            </p>
+            <p>
+                <em>Ready to bring your ideas to life? Contact us for a consultation, and let’s create something beautiful together!</em>
+            </p>
+            
+
+                <img class = "slideshow_image" src="../static/images/bridal.jpg" alt="Garden Glory" />
+                <img class = "slideshow_image" src="../static/images/casket.jpg" alt="Garden Glory" />
+                <img class = "slideshow_image" src="../static/images/centerpiece.jpg" alt="Garden Glory" />
+
+
+            <button onclick="location.href='order.html'">Shop Now</button>
+            </p>
+
             <h3>Customer Testimonials</h3>
 
             <div class="testimonial">
