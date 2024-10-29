@@ -79,6 +79,22 @@
                 font-size: 12px;
             }
         }
+        .slideshow_image {
+            display:block;
+            margin:auto;
+        }
+
+        .display_block {
+            width:auto;
+            margin:auto;
+        }
+
+        .display_image {
+            height:300px;
+            display:block;
+            margin:auto;
+        }
+
     </style>
 
     <script>
@@ -93,8 +109,8 @@
                 console.log(i);
             }
             slideIndex++;
-            if (slideIndex > x.length) { slideIndex = 1 }
-            x[slideIndex - 1].style.display = "inline-block";
+            if (slideIndex > x.length) {slideIndex = 1}
+            x[slideIndex-1].style.display = "inline-block";
             setTimeout(carousel, 2000);
         }
     </script>
@@ -149,8 +165,7 @@
                 as a thoughtful gift for loved ones. Check out our featured seasonal arrangements to bring a touch of
                 autumn into your home.
                 </br>
-            <p><i>This is a temporary image: real one will be of flowers and centered</i></p>
-            <img src="../static/images/primarylogo50k.png" alt="Garden Glory" />
+            <img class = "display_image" src="../static/images/fall_collection.jpg" alt="Garden Glory" />
             <button class="action" onclick="location.href='order.html'">Shop Now</button>
             </p>
 
@@ -161,8 +176,7 @@
                 <strong>Sunny Delight</strong> arrangement, perfect for birthdays or just because. These floral
                 favorites are designed to leave a lasting impression.
                 </br>
-            <p><i>This is a temporary image: real one will be of flowers and centered</i></p>
-            <img src="../static/images/primarylogo50k.png" alt="Garden Glory" />
+            <img class = "display_image" src="../static/images/romance_flowers.jpg" alt="Garden Glory" />
             <button onclick="location.href='order.html'">Shop Now</button>
             </p>
 
@@ -185,11 +199,11 @@
                 <em>Ready to bring your ideas to life? Contact us for a consultation, and let’s create something
                     beautiful together!</em>
             </p>
+            
 
-
-            <img class="slideshow_image" src="../static/images/bridal.jpg" alt="Garden Glory" />
-            <img class="slideshow_image" src="../static/images/casket.jpg" alt="Garden Glory" />
-            <img class="slideshow_image" src="../static/images/centerpiece.jpg" alt="Garden Glory" />
+                <img class = "slideshow_image" src="../static/images/bridal.jpg" alt="Garden Glory" />
+                <img class = "slideshow_image" src="../static/images/casket.jpg" alt="Garden Glory" />
+                <img class = "slideshow_image" src="../static/images/centerpiece.jpg" alt="Garden Glory" />
 
 
             <button onclick="location.href='order.html'">Shop Now</button>
@@ -241,6 +255,26 @@
         </div>
         <p>&copy; 2024 Borcelle Floral Studio. All rights reserved.</p>
     </footer>
+
+
+    <script>
+        var slideIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("slideshow_image");
+            for (i = 0; i < x.length; i++) {
+                console.log(x[i])
+                x[i].style.display = "none";
+                console.log(i);
+            }
+            slideIndex++;
+            if (slideIndex > x.length) {slideIndex = 1}
+            x[slideIndex-1].style.display = "block";
+            setTimeout(carousel, 2000);
+        }
+    </script>
 
 </body>
 
