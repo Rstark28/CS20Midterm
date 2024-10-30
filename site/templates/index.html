@@ -48,27 +48,31 @@
             overflow: hidden;
         }
 
-        .banner-image .banner-text {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .banner-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             width: 100%;
             height: 100%;
             color: #fff;
             text-align: center;
             font-size: 24px;
-            padding: 20px;
             background: rgba(0, 0, 0, 0.4);
             border-radius: 10px;
+            margin: 0;
+            padding: 0;
+            line-height: 1.1;
         }
+
 
         @media (max-width: 768px) {
             .banner-image {
                 height: 200px;
             }
 
-            .banner-image .banner-text {
-                font-size: 18px;
+            .banner-text {
+                font-size: 16px;
                 padding: 15px;
             }
         }
@@ -78,8 +82,8 @@
                 height: 150px;
             }
 
-            .banner-image .banner-text {
-                font-size: 14px;
+            .banner-text {
+                font-size: 12px;
                 padding: 10px;
             }
         }
@@ -143,9 +147,9 @@
             <div class="banner-image">
                 <div class="banner-text">
                     <h1 style="color: #fff">Borcelle Floral Studio</h1>
-                    <i>“Bringing Blooms to Life”</i>
+                    <i>Bringing Blooms to Life</i>
                     </br>
-                    <i>“Fresh Flowers, Expertly Crafted, Delivered with Love”</i>
+                    <i>Fresh Flowers, Expertly Crafted, Delivered with Love</i>
                 </div>
             </div>
             <p class="centered">
@@ -163,7 +167,7 @@
                 autumn into your home.
                 </br>
                 <img class="display_image" src="../static/images/fall_collection.jpg" alt="Garden Glory" />
-                <button class="home-button" onclick="location.href='order.html'">Shop Now!</button>
+                <button class="home-button" onclick="location.href='order.html'">Shop Now</button>
             </p>
 
             <h3>Best Sellers</h3>
