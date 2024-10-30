@@ -65,8 +65,16 @@
             line-height: 1.1;
         }
 
-
         @media (max-width: 768px) {
+
+            .banner-text {
+                font-size: 8px;
+                padding: 10px;
+            }
+        }
+
+
+        @media (min-width: 480px) and (max-width: 900px) {
             .banner-image {
                 height: 200px;
             }
@@ -77,23 +85,7 @@
             }
         }
 
-        @media (max-width: 480px) {
-            .banner-image {
-                height: 150px;
-            }
 
-            .banner-text {
-                font-size: 12px;
-                padding: 10px;
-            }
-        }
-
-        @media (max-width: 320px) {
-            .banner-image .banner-text {
-                font-size: 12px;
-                padding: 5px;
-            }
-        }
 
         .slideshow_image {
             display: block;
