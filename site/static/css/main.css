@@ -36,6 +36,7 @@ body {
   background-color: var(--nav-bar-color);
   border-radius: 10px;
   position: relative;
+  z-index: 2;
 }
 
 .nav-toggle {
@@ -250,6 +251,7 @@ footer p {
 
 /* Buttons and Lists */
 button {
+  font-family: "Anonymous Pro", monospace;
   background-color: var(--primary-color);
   color: var(--button-text-color);
   padding: 10px 20px;
