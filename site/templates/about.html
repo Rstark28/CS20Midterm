@@ -24,7 +24,7 @@
       background-color: var(--background-color);
       border: 2px solid var(--primary-color);
       padding: 20px;
-      border-radius: 10px;
+      border-radius: 10px 10px;
       width: 30%;
       text-align: center;
     }
@@ -54,6 +54,15 @@
         width: 80%;
         margin-bottom: 20px;
       }
+    }
+
+    .team-member img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 10px 10px;
+      border: 2px solid var(--primary-color);
     }
   </style>
 </head>
@@ -107,16 +116,19 @@
       <h3>Meet the Team</h3>
       <div class="team-section">
         <div class="team-member">
-          <h4>Olivia Borcelle</h4>
-          <p>Founder</p>
-          <p><em>Favorite Flower:</em> Stargazer Lily</p>
-        </div>
-        <div class="team-member">
+          <img src="../static/images/about/lily.jpg" />
           <h4>Lily Rosatto</h4>
           <p>Event Coordinator</p>
           <p><em>Favorite Flower:</em> Protea</p>
         </div>
         <div class="team-member">
+          <img src="../static/images/about/olivia.jpg" />
+          <h4>Olivia Borcelle</h4>
+          <p>Founder</p>
+          <p><em>Favorite Flower:</em> Stargazer Lily</p>
+        </div>
+        <div class="team-member">
+          <img src="../static/images/about/ethan.jpg" />
           <h4>Ethan Solis</h4>
           <p>Lead Florist</p>
           <p><em>Favorite Flower:</em> Blue Dahlia</p>

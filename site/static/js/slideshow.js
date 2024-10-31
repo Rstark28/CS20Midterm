@@ -1,15 +1,16 @@
-        var slideIndex = 0;
-        carousel();
+var slideIndex = 0;
+carousel();
 
-        function carousel() {
-            var i;
-            var x = document.getElementsByClassName("slideshow_image");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-                console.log(i);
-            }
-            slideIndex++;
-            if (slideIndex > x.length) { slideIndex = 1 }
-            x[slideIndex - 1].style.display = "inline-block";
-            setTimeout(carousel, 2000);
-        }
+function carousel() {
+    var i;
+    var slides = document.getElementsByClassName("slideshow_image");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
+    }
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(carousel, 3000);
+}

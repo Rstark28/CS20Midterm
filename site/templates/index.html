@@ -6,107 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="../static/css/main.css">
-    <link rel="stylesheet" href="../static/css/locations.css">
+    <link rel="stylesheet" href="../static/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <style>
-        h3 {
-            font-size: 20px;
-        }
-
-        p {
-            padding: 10px 0;
-        }
-
-        #logo_image {
-            display: block;
-            margin: auto;
-        }
-
-        .centered {
-            text-align: center;
-        }
-
-        .home-button {
-            display: block;
-            margin: 10px auto;
-        }
-
-        .testimonial {
-            max-width: 65%;
-            margin: auto;
-            text-align: center;
-        }
-
-        .banner-image {
-            background-image: url('../static/images/banner-image.avif');
-            background-size: cover;
-            background-position: center;
-            height: 300px;
-            position: relative;
-            border-radius: 15px;
-            border: 2px solid var(--primary-color);
-            overflow: hidden;
-        }
-
-        .banner-text {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            width: 100%;
-            height: 100%;
-            color: #fff;
-            text-align: center;
-            font-size: 24px;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 10px;
-            margin: 0;
-            padding: 0;
-            line-height: 1.1;
-        }
-
-        @media (max-width: 768px) {
-
-            .banner-text {
-                font-size: 13px;
-                padding: 10px;
-            }
-        }
-
-
-        @media (min-width: 480px) and (max-width: 900px) {
-            .banner-image {
-                height: 200px;
-            }
-
-            .banner-text {
-                font-size: 16px;
-                padding: 15px;
-            }
-        }
-
-
-
-        .slideshow_image {
-            display: block;
-            margin: 10px auto;
-            border-radius: 10px;
-            border: 2px solid var(--primary-color);
-        }
-
-        .display_block {
-            width: auto;
-            margin: auto;
-        }
-
-        .display_image {
-            height: 300px;
-            display: block;
-            margin: 10px auto;
-            border-radius: 10px;
-            border: 2px solid var(--primary-color);
-        }
-    </style>
 </head>
 
 <body>
@@ -165,8 +66,8 @@
             <h3>Best Sellers</h3>
             <p>
                 Our customers love these stunning arrangements! From timeless roses to elegant orchids, our best sellers
-                include the <strong>Classic Romance</strong> bouquet, a mix of red roses and lilies, and the
-                <strong>Sunny Delight</strong> arrangement, perfect for birthdays or just because. These floral
+                include the <strong>Peony Passion</strong> bouquet, a mix of red roses and lilies, and the
+                <strong>Sunflower Delight</strong> arrangement, perfect for birthdays or just because. These floral
                 favorites are designed to leave a lasting impression.
                 </br>
                 <img class="display_image" src="../static/images/romance_flowers.jpg" alt="Garden Glory" />
@@ -193,13 +94,14 @@
                     beautiful together!</em>
             </p>
 
-            <script src="../static/js/slideshow.js"></script>
-            <img class="slideshow_image" src="../static/images/bridal.jpg" alt="Garden Glory" />
-            <img class="slideshow_image" src="../static/images/casket.jpg" alt="Garden Glory" />
-            <img class="slideshow_image" src="../static/images/centerpiece.jpg" alt="Garden Glory" />
+            <div class="slideshow-container">
+                <img class="slideshow_image" src="../static/images/bridal.jpg" alt="Bridal Arrangement" />
+                <img class="slideshow_image" src="../static/images/casket.jpg" alt="Casket Arrangement" />
+                <img class="slideshow_image" src="../static/images/centerpiece.jpg" alt="Centerpiece Arrangement" />
+            </div>
 
 
-            <button class="home-button" onclick="location.href='order.html'">Shop Now</button>
+            <button class="home-button" onclick="location.href='events.html'">Schedule an Event</button>
             </p>
 
             <h3>Customer Testimonials</h3>
@@ -249,25 +151,7 @@
         <p>&copy; 2024 Borcelle Floral Studio. All rights reserved.</p>
     </footer>
 
-
-    <script>
-        var slideIndex = 0;
-        carousel();
-
-        function carousel() {
-            var i;
-            var x = document.getElementsByClassName("slideshow_image");
-            for (i = 0; i < x.length; i++) {
-                console.log(x[i])
-                x[i].style.display = "none";
-                console.log(i);
-            }
-            slideIndex++;
-            if (slideIndex > x.length) { slideIndex = 1 }
-            x[slideIndex - 1].style.display = "block";
-            setTimeout(carousel, 2000);
-        }
-    </script>
+    <script src="../static/js/slideshow.js"></script>
 
 </body>
 
