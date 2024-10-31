@@ -8,9 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let total = 0;
     cart.forEach((item) => {
       const cartItem = document.createElement("li"); // Create list item for each cart item
-      cartItem.innerHTML = `<strong>${item.name}</strong> $${item.price.toFixed(
-        2
-      )} x ${item.quantity}`;
+      cartItem.innerHTML = `<strong>${item.name}</strong> $${item.price.toFixed(2)} x ${item.quantity}`;
       const removeButton = document.createElement("button"); // Create remove button
       removeButton.style.float = "right";
       removeButton.textContent = "Remove";
